@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>TodoApp</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <a class="btn btn-primary  " href="/lists/new">Create New Tasks List</a>
+
+        <div class="row text-center">
+            <% lists.forEach(function(list){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <p>
+                            <%= list.name %>
+                        </p>
+                        <p>
+                            <%= list.creationDate %>
+                        </p>
+                        <p>
+                            <a href="/lists/<%= list._id %>" class="btn btn-primary">More Info</a>
+                        </p>
+                    </div>
+                </div>
+                <% }); %>
+        </div>
+    </div>
+
+</body>
+
+</html>
