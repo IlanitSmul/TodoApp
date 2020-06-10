@@ -6,20 +6,23 @@
         <div class="container">
             <h1>Welcome To TodoApp!</h1>
             <p>
-                <a class="btn btn-primary btn-large" href="/lists/new">Add New Campground</a>
+                <a class="btn btn-primary btn-large" href="/lists/new">Create New Tasks List</a>
             </p>
         </div>
     </header>
 
-    <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+    <div class="row row-cols-1 row-cols-md-3">
         <% lists.forEach(function(list){ %>
-        <div class="col-md-3 col-sm-6">
-            <div class="thumbnail">
-                <p> <%= list.name %> </p>
-                <p> <%= list.creationDate %> </p>
-                <p>
+        <div class="col">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title"><%= list.name %></h5>
+                    <p class="card-text">add total number of tasks (open/complete), priority, due date...</p>
                     <a href="/lists/<%= list._id %>" class="btn btn-primary">More Info</a>
-                </p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated: <%= list.lastUpdateDate %></small>
+                </div>
             </div>
         </div>
         <% }); %>

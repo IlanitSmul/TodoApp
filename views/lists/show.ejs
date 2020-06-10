@@ -2,14 +2,72 @@
 
 <div class="container">
 
-    <p> <%= list.name %> </p>
-    <p> <%= list.creationDate  %> </p>
-    <p> size: 0 </p>
+    <header class="jumbotron">
+        <div class="container">
+            <h1>Welcome To "<%= list.name %>" List!</h1>
+            <p> size: 0 </p>
+            <p> lastUpdateDate: <%= list.lastUpdateDate  %> </p>
+            <p>
+                <a class="btn btn-primary btn-large" href="#">Create New Task</a>
+            </p>
 
-    <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit</a>
-    <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
-        <button class="btn btn-xs btn-danger">Delete</button>
-    </form>
+            <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit List</a>
+            <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-danger">Delete List</button>
+            </form>
+        </div>
+    </header>
+
+    <div class="row row-cols-1 row-cols-md-3">
+        <div class="col">
+            Class 1
+            <% for(i=0; i<2; i++){ %>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">card-title 1</h5>
+                    <p class="card-text">card-text</p>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Dua Date:</small>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+        <div class="col">
+            Class 2
+            <% for(i=0; i<2; i++){ %>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">card-title 2</h5>
+                    <p class="card-text">card-text</p>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Dua Date:</small>
+                </div>
+            </div>
+            <% } %>
+        </div>
+
+        <div class="col">
+            Class 3
+            <% for(i=0; i<2; i++){ %>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">card-title 3</h5>
+                    <p class="card-text">card-text</p>
+                    <a href="#" class="btn btn-primary">Edit</a>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Dua Date:</small>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+
 
 </div>
 

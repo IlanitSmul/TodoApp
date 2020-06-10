@@ -2,7 +2,8 @@ var mongoose = require("mongoose");
 
 var listSchema = new mongoose.Schema({
     name: String,
-    creationDate: String,
+    createDate: String,
+    lastUpdateDate: String,
     // tasks: [{
     //     type: mongoose.Schema.Types.ObjectId,
     //     ref: "Task"
