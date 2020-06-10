@@ -7,7 +7,7 @@ var express = require("express"),
     Task = require("./models/task")
 
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/todo_app";
-console.log(url); // todo: delete
+console.log("DB url: " + url); // todo: delete
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -21,10 +21,12 @@ app.use(methodOverride("_method"));
 // ============================
 
 var indexRoutes = require("./routes/index"),
-    listRoutes = require("./routes/lists");
+    listRoutes = require("./routes/lists"),
+    taskRoutes = require("./routes/tasks");
 
 app.use("/", indexRoutes);
 app.use("/lists", listRoutes);
+app.use("/lists/:list_id/tasks", taskRoutes);
 
 // ============================
 // listen to port

@@ -37,9 +37,9 @@ router.post("/", function (req, res) {
     });
 });
 
-// Show|GET - Show info about one specific list ("/list/:id")
-router.get("/:id", function (req, res) {
-    List.findById(req.params.id, function (err, foundList) {
+// Show|GET - Show info about one specific list ("/lists/:list_id")
+router.get("/:list_id", function (req, res) {
+    List.findById(req.params.list_id).populate("tasks").exec(function (err, foundList) {
         if (err || !foundList) {
             console.log(err);
         } else {
@@ -48,9 +48,9 @@ router.get("/:id", function (req, res) {
     });
 });
 
-// Edit|GET - Show edit form for specific list ("/lists/:id/edit")
-router.get("/:id/edit", function (req, res) {
-    List.findById(req.params.id, function (err, foundList) {
+// Edit|GET - Show edit form for specific list ("/lists/:list_id/edit")
+router.get("/:list_id/edit", function (req, res) {
+    List.findById(req.params.list_id, function (err, foundList) {
         if (err || !foundList) {
             console.log(err);
         } else {
@@ -59,21 +59,21 @@ router.get("/:id/edit", function (req, res) {
     });
 });
 
-// Update|PUT - Update particular list, then redirect "/lists/:id"
-router.put("/:id", function (req, res) {
+// Update|PUT - Update particular list, then redirect "/lists/:list_id"
+router.put("/:list_id", function (req, res) {
     req.body.list.lastUpdateDate = new Date().toLocaleString();
-    List.findByIdAndUpdate(req.params.id, req.body.list, function (err, updatedList) {
+    List.findByIdAndUpdate(req.params.list_id, req.body.list, function (err, updatedList) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect("/lists/" + req.params.id);
+            res.redirect("/lists/" + req.params.list_id);
         }
     });
 });
 
 // Destroy|DELETE - Delete particular list, then redirect "/lists" 
-router.delete("/:id", function (req, res) {
-    List.findByIdAndRemove(req.params.id, function (err) {
+router.delete("/:list_id", function (req, res) {
+    List.findByIdAndRemove(req.params.list_id, function (err) {
         if (err) {
             console.log(err);
         } else {

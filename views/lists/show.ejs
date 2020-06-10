@@ -8,7 +8,7 @@
             <p> size: 0 </p>
             <p> lastUpdateDate: <%= list.lastUpdateDate  %> </p>
             <p>
-                <a class="btn btn-primary btn-large" href="#">Create New Task</a>
+                <a class="btn btn-primary" href="/lists/<%= list._id %>/tasks/new">Add New Task</a>
             </p>
 
             <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit List</a>
@@ -19,55 +19,68 @@
     </header>
 
     <div class="row row-cols-1 row-cols-md-3">
+
         <div class="col">
-            Class 1
-            <% for(i=0; i<2; i++){ %>
+            Next Up
+            <% list.tasks.forEach(function(task){ %>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">card-title 1</h5>
-                    <p class="card-text">card-text</p>
-                    <a href="#" class="btn btn-primary">Edit</a>
+                    <h5 class="card-title"><%= task.title %> --> CLASS Next Up </h5>
+                    <p class="card-text"><%= task.description %></p>
+                    <a class="btn btn-xs btn-warning" href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit">Edit</a>
+                    <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
+                        method="POST">
+                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Dua Date:</small>
                 </div>
             </div>
-            <% } %>
+            <% }) %>
         </div>
 
         <div class="col">
-            Class 2
-            <% for(i=0; i<2; i++){ %>
+            In Progress
+            <% list.tasks.forEach(function(task){ %>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">card-title 2</h5>
-                    <p class="card-text">card-text</p>
-                    <a href="#" class="btn btn-primary">Edit</a>
+                    <h5 class="card-title"><%= task.title %> --> CLASS In Progress </h5>
+                    <p class="card-text"><%= task.description %></p>
+                    <a class="btn btn-xs btn-warning" href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit">Edit</a>
+                    <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
+                        method="POST">
+                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Dua Date:</small>
                 </div>
             </div>
-            <% } %>
+            <% }) %>
         </div>
 
         <div class="col">
-            Class 3
-            <% for(i=0; i<2; i++){ %>
+            Complete
+            <% list.tasks.forEach(function(task){ %>
             <div class="card mb-4">
                 <div class="card-body">
-                    <h5 class="card-title">card-title 3</h5>
-                    <p class="card-text">card-text</p>
-                    <a href="#" class="btn btn-primary">Edit</a>
+                    <h5 class="card-title"><%= task.title %> --> CLASS Complete </h5>
+                    <p class="card-text"><%= task.description %></p>
+                    <a class="btn btn-xs btn-warning" href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit">Edit</a>
+                    <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
+                        method="POST">
+                        <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                    </form>
                 </div>
                 <div class="card-footer">
                     <small class="text-muted">Dua Date:</small>
                 </div>
             </div>
-            <% } %>
+            <% }) %>
         </div>
+
     </div>
-
 
 </div>
 
