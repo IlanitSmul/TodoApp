@@ -1,32 +1,16 @@
-<!DOCTYPE html>
-<html>
+<%- include ("../partials/header"); %>
 
-<head>
-    <title>TodoApp</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-</head>
+<div class="container">
 
-<body>
-    <div class="container">
+    <p> <%= list.name %> </p>
+    <p> <%= list.creationDate  %> </p>
+    <p> size: 0 </p>
 
-        <p>
-            <%= list.name %>
-        </p>
-        <p>
+    <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit</a>
+    <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
+        <button class="btn btn-xs btn-danger">Delete</button>
+    </form>
 
-            <%= list.creationDate  %>
-        </p>
-        <p>
-            size: 0
-        </p>
+</div>
 
-        <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit</a>
-        <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
-            <button class="btn btn-xs btn-danger">Delete</button>
-        </form>
-
-    </div>
-
-</body>
-
-</html>
+<%- include ("../partials/footer"); %>
