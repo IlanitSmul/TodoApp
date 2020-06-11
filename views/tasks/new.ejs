@@ -1,47 +1,103 @@
 <%- include ("../partials/header"); %>
 
 <div class="container">
+
+    <!-- page title-->
     <h1 style="text-align: center">Add New Task to <%= list.name %> List </h1>
-    <div class="row">
-        <div>
-            <form action="/lists/<%= list._id %>/tasks" method="POST">
 
-                <!-- task[title] field -->
-                <div class="form-group">
-                    <input class="form-control" type="text" name="task[title]" placeholder="task title">
+    <!-- form: create task -->
+    <div class="row row-cols-2" id="create-task-form">
+
+        <form action="/lists/<%= list._id %>/tasks" method="POST">
+
+            <!-- task[title] field -->
+            <div class="form-group row">
+                <label for="task-title" class="col-sm-3 col-form-label">Title</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="task-title" name="task[title]">
                 </div>
+            </div>
 
-                <!-- task[description] field -->
-                <div class="form-group">
-                    <input class="form-control" type="text" name="task[description]" placeholder="task description">
+            <!-- task[status] field -->
+            <% var statusOptions = [ { id: "next-up",     name: "Next Up" }, 
+                                     { id: "in-progress", name: "In Progress" },               
+                                     { id: "complete",    name: "Complete" } ]; %>
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-3 pt-0">Status</legend>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <% statusOptions.forEach(function(status){ %>
+                            <div class="col">
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="task[status]"
+                                        id="status-radio-<%= status.id %>" value="<%= status.name %>">
+                                    <label class="form-check-label" for="status-radio-<%= status.id %>">
+                                        <%= status.name %>
+                                    </label>
+                                </div>
+                            </div>
+                            <% }) %>
+                        </div>
+                    </div>
                 </div>
+            </fieldset>
 
-                <!-- task[status] field -->
-                <% var statusOptions = [ { id: "next-up",     name: "Next Up" }, 
-                                         { id: "in-progress", name: "In Progress" },               
-                                         { id: "complete",    name: "Complete" } ]; %>
-                <% statusOptions.forEach(function(status){ %>
-                <div class="custom-control custom-radio custom-control-inline">
-                    <input type="radio" id="status-radio-<%= status.id %>" name="task[status]"
-                        value="<%= status.name %>" class="custom-control-input">
-                    <label class="custom-control-label" for="status-radio-<%= status.id %>">
-                        <%= status.name %>
-                    </label>
+            <!-- task[priority] field -->
+            <% var priorityOptions = [ { id: "high",    name: "High" }, 
+                                       { id: "medium",  name: "Medium" },               
+                                       { id: "low",     name: "Low" } ]; %>
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-3 pt-0">Priority</legend>
+                    <div class="col-sm-9">
+                        <div class="row">
+                            <% priorityOptions.forEach(function(priority){ %>
+                            <div class="col">
+                                <div class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="task[priority]"
+                                        id="priority-radio-<%= priority.id %>" value="<%= priority.name %>">
+                                    <label class="form-check-label" for="status-radio-<%= priority.id %>">
+                                        <%= priority.name %>
+                                    </label>
+                                </div>
+                            </div>
+                            <% }) %>
+                        </div>
+                    </div>
                 </div>
-                <% }) %>
+            </fieldset>
 
-                <!-- submit button -->
-                <div class="form-group">
-                    <button class="btn btn-primary">Submit!</button>
+            <!-- task[dueDate] field -->
+            <div class="form-group row">
+                <label for="task-due-date" class="col-sm-3 col-form-label">Due Date</label>
+                <div class="col-sm-9">
+                    <input type="date" class="form-control" id="task-due-date" name="task[dueDate]">
                 </div>
+            </div>
 
-            </form>
+            <!-- task[description] field -->
+            <div class="form-group row">
+                <label for="task-description" class="col-sm-3 col-form-label">Description</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="task-description" name="task[description]">
+                </div>
+            </div>
 
-            <!-- go back link -->
-            <a href="/lists/<%= list._id %>">Go Back</a>
+            <!-- submit button -->
+            <div class="form-group">
+                <button class="btn btn-primary">Submit!</button>
+            </div>
 
-        </div>
+        </form>
+
     </div>
+
+    <!-- go back link -->
+    <div class="row">
+        <a href="/lists/<%= list._id %>">Go Back</a>
+    </div>
+
 </div>
 
 <%- include ("../partials/footer"); %>

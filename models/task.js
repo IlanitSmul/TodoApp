@@ -5,7 +5,11 @@ var taskSchema = mongoose.Schema({
     status: {
         type: String,
         enum: ["Next Up", "In Progress", "Complete"],
-        default: "Next Up"
+        default: "Next Up",
+    },
+    priority: {
+        type: String,
+        enum: ["High", "Medium", "Low"],
     },
     dueDate: String,
     description: String,

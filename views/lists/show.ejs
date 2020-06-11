@@ -4,9 +4,11 @@
 
     <header class="jumbotron">
         <div class="container">
+
+            <!-- list overview: page title / list size / last update date -->
             <h1>Welcome To "<%= list.name %>" List!</h1>
-            <p> size: 0 </p>
-            <p> lastUpdateDate: <%= list.lastUpdateDate  %> </p>
+            <p> size: <%= list.tasks.length %> </p>
+            <p> lastUpdateDate: <%= list.lastUpdateDate  %> </p> <!-- todo: update also in tasks updates -->
 
             <!-- add task / edit list / delete list buttons -->
             <div style="display: flex;">
@@ -30,32 +32,38 @@
         <% statusOptions.forEach(function(status){ %>
 
         <div class="col">
-            <h3><%= status.name %></h3>
+            <h4><%= status.name %></h3>
 
-            <% list.tasks.forEach(function(task){ %>
-            <% if (task.status === status.name) { %>
-            <div class="card mb-4">
-                <div class="card-body">
-                    <h5 class="card-title"><%= task.title %></h5>
-                    <p class="card-text">description: <%= task.description %></p>
-                    <p class="card-text">status: <%= task.status %></p>
+                <% list.tasks.forEach(function(task){ %>
+                <% if (task.status === status.name) { %>
+                <div class="card mb-4">
+                    <div class="card-body">
 
-                    <!-- edit task / delete task buttons -->
-                    <div style="display: flex;">
-                        <a class="btn btn-xs btn-warning"
-                            href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit">Edit</a>
-                        <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
-                            method="POST">
-                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
-                        </form>
+                        <!-- task title / description / status / priority -->
+                        <h5 class="card-title"><%= task.title %></h5>
+                        <p class="card-text">description: <%= task.description %></p>
+                        <p class="card-text">status: <%= task.status %></p>
+                        <p class="card-text">priority: <%= task.priority %></p>
+
+                        <!-- edit task / delete task buttons -->
+                        <div style="display: flex;">
+                            <a class="btn btn-xs btn-warning"
+                                href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit">Edit</a>
+                            <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
+                                method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                            </form>
+                        </div>
                     </div>
+
+                    <!-- task due date -->
+                    <div class="card-footer">
+                        <small class="text-muted">Dua Date: <%= task.dueDate %></small>
+                    </div>
+
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Dua Date:</small>
-                </div>
-            </div>
-            <% } %>
-            <% }) %>
+                <% } %>
+                <% }) %>
         </div>
 
         <% }) %>

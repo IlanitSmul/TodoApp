@@ -30,6 +30,7 @@ router.post("/", function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
+                    console.log(task); // dlog
                     task.save();
                     list.tasks.push(task);
                     list.save();
@@ -40,7 +41,7 @@ router.post("/", function (req, res) {
     });
 });
 
-// Show|GET - Show info about one specific task ("/lists/:list_id/tasks/:task_id")
+// Show|GET - Show info about one specific task ("/lists/:list_id/tasks/:task_id") // todo: complete
 
 // Edit|GET - Show edit form for specific task ("/lists/:list_id/tasks/:task_id/edit")
 router.get("/:task_id/edit", function (req, res) {
@@ -64,6 +65,7 @@ router.put("/:task_id", function (req, res) {
         if (err) {
             console.log(err);
         } else {
+            console.log(updatedTask); // dlog
             res.redirect("/lists/" + req.params.list_id);
         }
     });
