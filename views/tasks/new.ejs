@@ -5,17 +5,41 @@
     <div class="row">
         <div>
             <form action="/lists/<%= list._id %>/tasks" method="POST">
+
+                <!-- task[title] field -->
                 <div class="form-group">
                     <input class="form-control" type="text" name="task[title]" placeholder="task title">
                 </div>
+
+                <!-- task[description] field -->
                 <div class="form-group">
                     <input class="form-control" type="text" name="task[description]" placeholder="task description">
                 </div>
+
+                <!-- task[status] field -->
+                <% var statusOptions = [ { id: "next-up",     name: "Next Up" }, 
+                                         { id: "in-progress", name: "In Progress" },               
+                                         { id: "complete",    name: "Complete" } ]; %>
+                <% statusOptions.forEach(function(status){ %>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="status-radio-<%= status.id %>" name="task[status]"
+                        value="<%= status.name %>" class="custom-control-input">
+                    <label class="custom-control-label" for="status-radio-<%= status.id %>">
+                        <%= status.name %>
+                    </label>
+                </div>
+                <% }) %>
+
+                <!-- submit button -->
                 <div class="form-group">
                     <button class="btn btn-primary">Submit!</button>
                 </div>
+
             </form>
+
+            <!-- go back link -->
             <a href="/lists/<%= list._id %>">Go Back</a>
+
         </div>
     </div>
 </div>
