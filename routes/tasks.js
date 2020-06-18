@@ -7,6 +7,17 @@ var Task = require("../models/task");
 // TASK ROUTES
 // ============================
 
+
+router.post("/new_task", function (req, res) {
+    List.findById(req.params.list_id, function (err, list) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render("tasks/new", { list: list, default_status: req.body.status });
+        }
+    })
+});
+
 // Index|GET - List all task lists ("/lists") --> NOT RELEVANT
 
 // New|GET - Show new task form ("/lists/:list_id/tasks/new")
