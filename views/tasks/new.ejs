@@ -32,7 +32,8 @@
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="radio" name="task[status]"
                                         id="status-radio-<%= status.id %>" value="<%= status.name %>"
-                                        <% if (default_status === status.id) { %> checked <% } %>>
+                                        <% if (typeof default_status != 'undefined' && default_status === status.id) { %>checked
+                                        <% } %>>
                                     <label class="form-check-label" for="status-radio-<%= status.id %>">
                                         <%= status.name %>
                                     </label>
@@ -81,7 +82,7 @@
             <div class="form-group row">
                 <label for="task-description" class="col-sm-3 col-form-label">Description</label>
                 <div class="col-sm-9">
-                    <input type="text" class="form-control" id="task-description" name="task[description]">
+                    <textarea class="form-control" rows="7" id="task-description" name="task[description]"></textarea>
                 </div>
             </div>
 
