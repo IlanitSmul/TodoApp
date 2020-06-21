@@ -80,34 +80,33 @@
                 <div class="card-body">
 
                     <h5 class="card-title">
-                        <div class="d-flex justify-content-between">
 
-                            <!-- task title -->
-                            <div class="d-flex">
-                                <%= task.title %>
-                                <!-- todo: need title over the 2 buttons -->
-                            </div>
+                        <!-- edit/delete task buttons -->
+                        <div class="d-flex justify-content-end float-right">
 
-                            <div class="d-flex justify-content-end">
+                            <!-- edit task button -->
+                            <a class="btn btn-md py-0 by-0 align-top"
+                                href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit" data-toggle="tooltip"
+                                data-placement="top" title="Edit task">
+                                <i class="fas fa-edit"></i>
+                            </a>
 
-                                <!-- edit task button -->
-                                <a class="btn btn-md py-0 by-0 align-top"
-                                    href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit" data-toggle="tooltip"
-                                    data-placement="top" title="Edit task">
-                                    <i class="fas fa-edit"></i>
-                                </a>
+                            <!-- delete task button -->
+                            <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
+                                method="POST">
+                                <button type="submit" class="btn btn-md py-0 by-0 align-top" data-toggle="tooltip"
+                                    data-placement="top" title="Delete task">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </form>
 
-                                <!-- delete task button -->
-                                <form class="delete-form "
-                                    action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-md py-0 by-0 align-top" data-toggle="tooltip"
-                                        data-placement="top" title="Delete task">
-                                        <i class="fas fa-trash-alt"></i>
-                                    </button>
-                                </form>
-
-                            </div>
                         </div>
+
+                        <!-- task title -->
+                        <div>
+                            <%= task.title %>
+                        </div>
+
                     </h5>
 
                     <p class="card-text"><%= task.description %></p>

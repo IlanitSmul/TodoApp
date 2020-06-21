@@ -55,3 +55,17 @@
 i{
     color: rgba(55, 53, 47 ,0.4);
 }
+
+
+.red, #card-title-1, #id-1 {
+    border: 1px solid red;
+}
+
+.blue, #card-title-2, #id-3  {
+    border: 1px solid blue;
+}
+
+.green, #card-title-3, #id-2   { /* image*/
+    border: 1px solid green; 
+    float: right;
+}
