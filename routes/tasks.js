@@ -64,9 +64,6 @@ router.get("/:task_id/edit", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Edit|GET"); // dlog
-                console.log(task); // dlog
-
                 res.render("tasks/edit", { list: list, task: task }); // todo: not need to pass all "list" object
             }
         });
@@ -79,7 +76,6 @@ router.put("/:task_id", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Update|PUT"); // dlog
             console.log(updatedTask); // dlog
             res.redirect("/lists/" + req.params.list_id);
         }

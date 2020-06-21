@@ -31,6 +31,26 @@
 }
 
 
+/* list overview */
+
+.list-overview{
+    background:rgb(245,245,245);
+    /* background:pink; */
+}
+
+.breadcrumb{
+    background: none;
+}
+
+/* #list-overview-nav{
+    border: 2px solid green;
+}
+
+#list-overview-buttons{
+    border: 2px solid red;
+} */
+
+
 /* status titles line */
 
 .status-btn-title{

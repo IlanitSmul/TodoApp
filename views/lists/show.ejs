@@ -13,25 +13,33 @@
 <div class="container">
 
     <!-- list overview -->
-    <header class="jumbotron">
-        <div class="container">
+    <div class="row list-overview mt-3 mb-4">
 
-            <!-- list overview: page title / list size / last update date -->
-            <h1>Welcome To "<%= list.name %>" List!</h1>
-            <p> size: <%= list.tasks.length %> </p>
-            <p> lastUpdateDate: <%= list.lastUpdateDate  %> </p> <!-- todo: update also in tasks updates -->
+        <!-- breadcrumb: list name and href to all lists -->
+        <nav aria-label="breadcrumb" class="col-sm-9" id="list-overview-nav">
+            <ol class="breadcrumb my-0">
+                <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
+                <li class="breadcrumb-item active" aria-current="page"> <%= list.name %> </li>
+                <!-- todo: change task title on click -->
+            </ol>
+        </nav>
 
-            <!-- add task / edit list / delete list buttons -->
-            <div style="display: flex;">
-                <a class="btn btn-primary" href="/lists/<%= list._id %>/tasks/new">Add New Task</a>
-                <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit List</a>
-                <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
-                    <button class="btn btn-xs btn-danger">Delete List</button>
-                </form>
-            </div>
+        <div class="col-sm-3 d-flex justify-content-end align-self-center" id="list-overview-buttons">
+
+            <!-- add task button -->
+            <a class="btn btn-xs btn-primary mx-2" href="/lists/<%= list._id %>/tasks/new">New Task</a>
+
+            <!-- delete list button -->
+            <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-xs btn-dark mx-2">Delete List</button>
+            </form>
+
+            <!-- edit list button todo: change-->
+            <!-- <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit List</a> -->
 
         </div>
-    </header>
+
+    </div>
 
     <!-- list tasks -->
     <div class="row row-cols-1 row-cols-md-3">
@@ -76,7 +84,7 @@
             <!-- task -->
             <% list.tasks.forEach(function(task){ %>
             <% if (task.status === status.name) { %>
-            <div class="card mb-4">
+            <div class="card mb-3">
                 <div class="card-body">
 
                     <h5 class="card-title">
@@ -113,6 +121,9 @@
                     <p class="card-text my-2 px-2 priority <%= task.priority %>" data-toggle="tooltip"
                         data-placement="right" title="Priority">
                         <%= task.priority %>
+                        <% if (task.priority == "High") { %>
+                        <i class="fas fa-burn" style="color: red"></i>
+                        <% } %>
                     </p>
 
                     <!-- task due date -->
