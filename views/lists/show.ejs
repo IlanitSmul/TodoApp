@@ -87,7 +87,7 @@
                             <!-- edit task button -->
                             <a class="btn btn-md py-0 by-0 align-top"
                                 href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit" data-toggle="tooltip"
-                                data-placement="top" title="Edit task">
+                                data-placement="bottom" title="Edit task">
                                 <i class="fas fa-edit"></i>
                             </a>
 
@@ -95,7 +95,7 @@
                             <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
                                 method="POST">
                                 <button type="submit" class="btn btn-md py-0 by-0 align-top" data-toggle="tooltip"
-                                    data-placement="top" title="Delete task">
+                                    data-placement="bottom" title="Delete task">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
@@ -109,14 +109,19 @@
 
                     </h5>
 
-                    <p class="card-text"><%= task.description %></p>
-                    <p class="card-text <%= task.priority %>"><%= task.priority %></p>
+                    <!-- task priority -->
+                    <p class="card-text my-2 px-2 priority <%= task.priority %>" data-toggle="tooltip"
+                        data-placement="right" title="Priority">
+                        <%= task.priority %>
+                    </p>
 
-                </div>
+                    <!-- task due date -->
+                    <p class="card-text due-date my-2 px-1" data-toggle="tooltip" data-placement="right"
+                        title="Due date">
+                        <i class="far fa-calendar-alt mr-1"></i>
+                        <%= task.dueDate %>
+                    </p>
 
-                <!-- task due date -->
-                <div class="card-footer">
-                    <small class="text-muted">Dua Date: <%= task.dueDate %></small>
                 </div>
 
             </div>

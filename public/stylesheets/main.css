@@ -1,17 +1,20 @@
 /* priority - colors */
 
-.High {
+.priority{
+    color: rgb(55, 53, 47);
+    border-radius: 3px;
     width: max-content;
+}
+
+.High {
     background: rgba(255, 0, 0, 0.35);
 }
 
 .Medium {
-    width: max-content;
     background: rgba(255, 153, 51, 0.5);
 }
 
 .Low {
-    width: max-content;
     background: rgba(26, 228, 228, 0.5);
 }
 
@@ -26,6 +29,7 @@
 .status-btn-complete {
     background: rgba(0, 135, 107, 0.2);
 }
+
 
 /* status titles line */
 
@@ -46,12 +50,17 @@
  
  /* task card */
 
- .card-body {
+.card-body {
     padding: 0.6rem;
+}
+
+.due-date{
+    max-width: fit-content;
 }
 
 /* icons  */
 
-i{
+i {
     color: rgba(55, 53, 47 ,0.4);
 }
+
