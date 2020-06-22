@@ -7,7 +7,7 @@ var Task = require("../models/task");
 // TASK ROUTES
 // ============================
 
-
+// add task | POST - Create a new task, then render "tasks/new" with the "default_status"
 router.post("/new_task", function (req, res) {
     List.findById(req.params.list_id, function (err, list) {
         if (err) {
@@ -17,6 +17,18 @@ router.post("/new_task", function (req, res) {
         }
     })
 });
+
+// edit status | PUT - Change status of task, the refresh page
+router.put("/:task_id/change_status", function (req, res) {
+    Task.findByIdAndUpdate(req.params.task_id, req.body.task, { new: true }, function (err, updatedTask) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.redirect("/lists/" + req.params.list_id);
+        }
+    });
+});
+
 
 // Index|GET - List all task lists ("/lists") --> NOT RELEVANT
 
@@ -72,7 +84,7 @@ router.get("/:task_id/edit", function (req, res) {
 
 // Update|PUT - Update particular task, then redirect "/lists/:list_id"
 router.put("/:task_id", function (req, res) {
-    Task.findByIdAndUpdate(req.params.task_id, req.body.task, function (err, updatedTask) {
+    Task.findByIdAndUpdate(req.params.task_id, req.body.task, { new: true }, function (err, updatedTask) {
         if (err) {
             console.log(err);
         } else {

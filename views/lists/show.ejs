@@ -90,24 +90,48 @@
                     <h5 class="card-title">
 
                         <!-- edit/delete task buttons -->
-                        <div class="d-flex justify-content-end float-right">
+                        <div class="flex-column float-right">
 
                             <!-- edit task button -->
-                            <a class="btn btn-md py-0 by-0 align-top"
+                            <a class="btn btn-md align-top pt-0 pb-2 px-0"
                                 href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit" data-toggle="tooltip"
-                                data-placement="bottom" title="Edit task">
+                                data-placement="right" title="Edit task">
                                 <i class="fas fa-edit"></i>
                             </a>
 
                             <!-- delete task button -->
                             <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
                                 method="POST">
-                                <button type="submit" class="btn btn-md py-0 by-0 align-top" data-toggle="tooltip"
-                                    data-placement="bottom" title="Delete task">
+                                <button type="submit" class="btn btn-md pt-0 pb-2 px-0" data-toggle="tooltip"
+                                    data-placement="right" title="Delete task">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
 
+                            <!-- change dtatus of task button -->
+                            <div data-toggle="tooltip" data-placement="right" title="Change task status">
+                                <div class="dropdown">
+                                    <button class="btn btn-md pt-0 pb-2 px-0" type="button"
+                                        id="change-status-dropdown-button" aria-haspopup="true" aria-expanded="false"
+                                        data-toggle="dropdown">
+                                        <i class="fas fa-exchange-alt"></i>
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="change-status-dropdown-button">
+                                        <% statusOptions.forEach(function(selected_status){ %>
+                                        <form
+                                            action="/lists/<%= list._id %>/tasks/<%= task._id %>/change_status?_method=PUT"
+                                            method="POST">
+                                            <input type="hidden" name="task[status]"
+                                                value="<%= selected_status.name %>">
+                                            <button type="submit"
+                                                class="btn btn-sm status-btn-title status-btn-<%= selected_status.id %>">
+                                                <%= selected_status.name %>
+                                            </button>
+                                        </form>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <!-- task title -->
