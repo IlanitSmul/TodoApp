@@ -110,7 +110,7 @@
                                 </button>
                             </form>
 
-                            <!-- change dtatus of task button -->
+                            <!-- change status of task button -->
                             <div data-toggle="tooltip" data-placement="right" title="Change task status">
                                 <div class="dropdown">
                                     <button class="btn btn-md pt-0 pb-2 px-0" type="button"
@@ -118,7 +118,7 @@
                                         data-toggle="dropdown">
                                         <i class="fas fa-exchange-alt"></i>
                                     </button>
-                                    <div class="dropdown-menu" aria-labelledby="change-status-dropdown-button">
+                                    <div class="dropdown-menu m-0 aria-labelledby=" change-status-dropdown-button">
                                         <% statusOptions.forEach(function(selected_status){ %>
                                         <form
                                             action="/lists/<%= list._id %>/tasks/<%= task._id %>/change_status?_method=PUT"
@@ -134,6 +134,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
 
                         <!-- task title -->

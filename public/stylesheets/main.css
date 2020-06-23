@@ -79,6 +79,17 @@
     max-width: fit-content;
 }
 
+/* status dropdown */
+.dropdown-menu  {
+    min-width: max-content;
+    padding: 0;
+}
+
+.dropdown-menu *  {
+   /* border: 1px red solid; */
+   width: 100%;
+}
+
 /* icons  */
 
 i {
