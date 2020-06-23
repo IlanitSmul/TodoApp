@@ -6,6 +6,22 @@ var List = require("../models/list");
 // LIST ROUTES
 // ============================
 
+// edit name | PATCH - Change name of list
+router.patch("/:list_id/update_name", function (req, res) {
+    List.findByIdAndUpdate(req.params.list_id, { 'name': req.body.list_name }, { new: true }, function (err, updatedList) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(updatedList); // dlog
+            res.sendStatus(200);
+        }
+    });
+});
+
+// ============================
+// LIST ROUTES: CRUD/REST
+// ============================
+
 // Index|GET - List all task lists ("/lists")
 router.get("/", function (req, res) {
     List.find({}, function (err, lists) {
@@ -48,28 +64,30 @@ router.get("/:list_id", function (req, res) {
     });
 });
 
-// Edit|GET - Show edit form for specific list ("/lists/:list_id/edit")
-router.get("/:list_id/edit", function (req, res) {
-    List.findById(req.params.list_id, function (err, foundList) {
-        if (err || !foundList) {
-            console.log(err);
-        } else {
-            res.render("lists/edit", { list: foundList });
-        }
-    });
-});
+// ----------------------- NOT RELEVANT! -----------------------
+// Edit|GET - Show edit form for specific list ("/lists/:list_id/edit") 
+// router.get("/:list_id/edit", function (req, res) {
+//     List.findById(req.params.list_id, function (err, foundList) {
+//         if (err || !foundList) {
+//             console.log(err);
+//         } else {
+//             res.render("lists/edit", { list: foundList });
+//         }
+//     });
+// });
 
+// ----------------------- NOT RELEVANT! -----------------------
 // Update|PUT - Update particular list, then redirect "/lists/:list_id"
-router.put("/:list_id", function (req, res) {
-    req.body.list.lastUpdateDate = new Date().toLocaleString();
-    List.findByIdAndUpdate(req.params.list_id, req.body.list, function (err, updatedList) {
-        if (err) {
-            console.log(err);
-        } else {
-            res.redirect("/lists/" + req.params.list_id);
-        }
-    });
-});
+// router.put("/:list_id", function (req, res) {
+//     req.body.list.lastUpdateDate = new Date().toLocaleString();
+//     List.findByIdAndUpdate(req.params.list_id, req.body.list, function (err, updatedList) {
+//         if (err) {
+//             console.log(err);
+//         } else {
+//             res.redirect("/lists/" + req.params.list_id);
+//         }
+//     });
+// });
 
 // Destroy|DELETE - Delete particular list, then redirect "/lists" 
 router.delete("/:list_id", function (req, res) {

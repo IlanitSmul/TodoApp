@@ -35,13 +35,22 @@
 
 .list-overview{
     background:rgb(245,245,245);
-    /* background:pink; */
 }
 
 .breadcrumb{
     background: none;
 }
 
+.list-name{
+    margin-bottom: 0;
+    padding: 0;
+    border: none;
+}
+.list-name:focus {
+    border-radius: .25rem;
+    outline: none;
+    background: rgb(255,255,255)
+  }
 
 /* status titles line */
 

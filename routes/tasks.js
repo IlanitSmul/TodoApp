@@ -24,11 +24,14 @@ router.put("/:task_id/change_status", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect("/lists/" + req.params.list_id);
+            res.redirect("/lists/" + req.params.list_id); // todo: use ajax instead
         }
     });
 });
 
+// ============================
+// TASK ROUTES: CRUD/REST
+// ============================
 
 // Index|GET - List all task lists ("/lists") --> NOT RELEVANT
 

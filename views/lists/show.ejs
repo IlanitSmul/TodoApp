@@ -1,5 +1,9 @@
 <%- include ("../partials/header"); %>
 
+<script>
+    var list_id = '<%- (list._id) %>';
+</script>
+
 <% var statusOptions = 
 [ { id: "next-up", name: "Next Up" }, 
 { id: "in-progress", name: "In Progress" },               
@@ -16,15 +20,16 @@
     <div class="row list-overview mt-3 mb-4">
 
         <!-- breadcrumb: list name and href to all lists -->
-        <nav aria-label="breadcrumb" class="col-sm-9" id="list-overview-nav">
+        <nav aria-label="breadcrumb" class="col-sm-7" id="list-overview-nav">
             <ol class="breadcrumb my-0">
                 <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
-                <li class="breadcrumb-item active" aria-current="page"> <%= list.name %> </li>
-                <!-- todo: change task title on click -->
+                <li class="breadcrumb-item active" aria-current="page">
+                    <p class="list-title" data-editable><%= list.name %></p>
+                </li>
             </ol>
         </nav>
 
-        <div class="col-sm-3 d-flex justify-content-end align-self-center" id="list-overview-buttons">
+        <div class="col-sm-5 d-flex justify-content-end align-self-center" id="list-overview-buttons">
 
             <!-- add task button -->
             <a class="btn btn-xs btn-primary mx-2" href="/lists/<%= list._id %>/tasks/new">New Task</a>
@@ -33,9 +38,6 @@
             <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
                 <button class="btn btn-xs btn-dark mx-2">Delete List</button>
             </form>
-
-            <!-- edit list button todo: change-->
-            <!-- <a class="btn btn-xs btn-warning" href="/lists/<%= list._id %>/edit">Edit List</a> -->
 
         </div>
 
