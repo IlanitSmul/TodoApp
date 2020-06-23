@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var List = require("../models/list");
+var Task = require("../models/task");
+const { version } = require("mongoose");
 
 // ============================
 // LIST ROUTES
@@ -91,10 +93,17 @@ router.get("/:list_id", function (req, res) {
 
 // Destroy|DELETE - Delete particular list, then redirect "/lists" 
 router.delete("/:list_id", function (req, res) {
-    List.findByIdAndRemove(req.params.list_id, function (err) {
+    List.findByIdAndRemove(req.params.list_id, function (err, foundList) {
         if (err) {
             console.log(err);
         } else {
+            foundList.tasks.forEach(task_id =>
+                Task.findByIdAndRemove(task_id, function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+            );
             res.redirect("/lists");
         }
     });

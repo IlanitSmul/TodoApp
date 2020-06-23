@@ -103,6 +103,11 @@ router.delete("/:task_id", function (req, res) {
         if (err) {
             console.log(err);
         } else {
+            List.findByIdAndUpdate(req.params.list_id, { $pull: { "tasks": req.params.task_id } }, function (err) {
+                if (err) {
+                    console.log(err);
+                }
+            });
             res.redirect("/lists/" + req.params.list_id);
         }
     });
