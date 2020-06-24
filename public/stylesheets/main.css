@@ -62,7 +62,13 @@
 .status-btn-number{
     color: rgba(55, 53, 47 ,0.4);
     font-weight: 600;
-}
+    padding: .375rem .75rem;
+    margin: 0;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    text-align: center;
+    vertical-align: middle;
+ }
 
 .status-btn-plus{
     color: rgba(55, 53, 47 ,0.4);

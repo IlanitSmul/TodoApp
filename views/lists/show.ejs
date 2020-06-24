@@ -61,13 +61,13 @@
 
                 <!-- num of tasks in column todo: use "p" instead of "button" -->
                 <div class="status-<%= status.id %>-number">
-                    <button type="button" class="btn btn-md status-btn-number">
+                    <p class="status-btn-number">
                         <%= 
                         list.tasks.filter(function(task){ 
                             return task.status === status.name;
                         }).length;
-                    %>
-                    </button>
+                        %>
+                    </p>
                 </div>
 
                 <!-- add task "+" buttom (to the specific column) -->
