@@ -18,13 +18,14 @@ router.post("/new_task", function (req, res) {
     })
 });
 
-// edit status | PUT - Change status of task, the refresh page
-router.put("/:task_id/change_status", function (req, res) {
-    Task.findByIdAndUpdate(req.params.task_id, req.body.task, { new: true }, function (err, updatedTask) {
+// edit status | PATCH - Change status of task
+router.patch("/:task_id/change_status", function (req, res) {
+    Task.findByIdAndUpdate(req.params.task_id, { 'status': req.body.status }, { new: true }, function (err, updatedTask) {
         if (err) {
             console.log(err);
         } else {
-            res.redirect("/lists/" + req.params.list_id); // todo: use ajax instead
+            console.log(updatedTask); // dlog
+            res.sendStatus(200);
         }
     });
 });

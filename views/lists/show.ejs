@@ -1,7 +1,7 @@
 <%- include ("../partials/header"); %>
 
 <script>
-    var list_id = '<%- (list._id) %>';
+    var listId = '<%- (list._id) %>';
 </script>
 
 <% var statusOptions = 
@@ -48,7 +48,7 @@
 
         <% statusOptions.forEach(function(status){ %>
 
-        <div class="col">
+        <div class="col" id="<%= status.id %>-col">
 
             <div class="d-flex flex-row my-2">
 
@@ -60,7 +60,7 @@
                 </div>
 
                 <!-- num of tasks in column todo: use "p" instead of "button" -->
-                <div>
+                <div class="status-<%= status.id %>-number">
                     <button type="button" class="btn btn-md status-btn-number">
                         <%= 
                         list.tasks.filter(function(task){ 
@@ -86,7 +86,7 @@
             <!-- task -->
             <% list.tasks.forEach(function(task){ %>
             <% if (task.status === status.name) { %>
-            <div class="card mb-3">
+            <div class="card mb-3" id="<%=task._id %>" data-current-status="<%= status.id %>">
                 <div class="card-body">
 
                     <h5 class="card-title">
@@ -110,7 +110,7 @@
                                 </button>
                             </form>
 
-                            <!-- change status of task button todo: use ajax -->
+                            <!-- change status of task button -->
                             <div data-toggle="tooltip" data-placement="right" title="Change task status">
                                 <div class="dropdown">
                                     <button class="btn btn-md pt-0 pb-2 px-0" type="button"
@@ -120,16 +120,12 @@
                                     </button>
                                     <div class="dropdown-menu m-0" aria-labelledby="change-status-dropdown-button">
                                         <% statusOptions.forEach(function(selected_status){ %>
-                                        <form
-                                            action="/lists/<%= list._id %>/tasks/<%= task._id %>/change_status?_method=PUT"
-                                            method="POST">
-                                            <input type="hidden" name="task[status]"
-                                                value="<%= selected_status.name %>">
-                                            <button type="submit"
-                                                class="btn btn-sm status-btn-title status-btn-<%= selected_status.id %>">
-                                                <%= selected_status.name %>
-                                            </button>
-                                        </form>
+                                        <button type="submit"
+                                            class="btn btn-sm status-btn-title status-btn-<%= selected_status.id %>"
+                                            data-task-id="<%= task._id %>"
+                                            data-selected-status="<%= selected_status.id %>">
+                                            <%= selected_status.name %>
+                                        </button>
                                         <% }) %>
                                     </div>
                                 </div>

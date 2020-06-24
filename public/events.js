@@ -11,13 +11,13 @@ $('body').on('click', '[data-editable]', function (e) {
         $input.replaceWith($updated_p);
 
         var data = {
-            list_id: list_id,
+            list_id: listId,
             list_name: $input.val()
         };
 
         $.ajax({
             type: 'PATCH',
-            url: '/lists/' + list_id + '/update_name',
+            url: '/lists/' + listId + '/update_name',
             data: data,
             dataType: 'text',
             success: function () {
@@ -31,4 +31,51 @@ $('body').on('click', '[data-editable]', function (e) {
     }
 
     $input.one('blur', save).focus();
+});
+
+// change status of task by click one id the status dropdown buttons
+$('.dropdown-menu button').on('click', function (e) {
+    e.preventDefault();
+
+    var statusDict = {
+        "next-up": "Next Up", "in-progress": "In Progress", "complete": "Complete",
+    };
+
+    var statusButtonElement = $(this);
+    var taskId = statusButtonElement.data("task-id");
+    var selectedStatus = statusButtonElement.data("selected-status");
+
+    var taskCardElement = $("#" + taskId);
+    var currentStatus = taskCardElement.data("current-status");
+
+    var data = {
+        status: statusDict[selectedStatus],
+    };
+
+    $.ajax({
+        type: 'PATCH',
+        url: '/lists/' + listId + '/tasks/' + taskId + '/change_status',
+        data: data,
+        dataType: 'text',
+        success: function (msg) {
+            console.log('success');
+            if (selectedStatus != currentStatus) {
+                // change count in status col title
+                var numberElements = [".status-" + selectedStatus + "-number", ".status-" + currentStatus + "-number"]
+                numberElements.forEach(e => {
+                    $(e).load(location.href + " " + e + " > *");
+                    $(e).hide().fadeIn('fast');
+                });
+                // move card to update status col
+                var selectedStatusColElement = $('#' + selectedStatus + '-col');
+                taskCardElement.data("current-status", selectedStatus);
+                taskCardElement.fadeOut('fast', function () {
+                    selectedStatusColElement.append($(this).fadeIn('fast'));
+                })
+            }
+        },
+        error: function () {
+            console.log('error');
+        }
+    });
 });
