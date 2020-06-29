@@ -7,7 +7,6 @@ var express = require("express"),
     Task = require("./models/task")
 
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/todo_app";
-console.log("DB url: " + url); // todo: delete
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true });
 
 app.use(bodyParser.urlencoded({ extended: true }));
