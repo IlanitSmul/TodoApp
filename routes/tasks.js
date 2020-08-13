@@ -68,7 +68,21 @@ router.post("/", function (req, res) {
     });
 });
 
-// Show|GET - Show info about one specific task ("/lists/:list_id/tasks/:task_id") // todo: complete
+// Show|GET - Show info about one specific task ("/lists/:list_id/tasks/:task_id")
+router.get("/:task_id", function (req, res) {
+    List.findById(req.params.list_id).populate("tasks").exec(function (err, list) {
+        if (err || !list) {
+            console.log(err);
+        }
+        Task.findById(req.params.task_id, function (err, task) {
+            if (err) {
+                console.log(err);
+            } else {
+                res.render("tasks/show", { list: list, task: task }); // todo: not need to pass all "list" object
+            }
+        });
+    });
+});
 
 // Edit|GET - Show edit form for specific task ("/lists/:list_id/tasks/:task_id/edit")
 router.get("/:task_id/edit", function (req, res) {

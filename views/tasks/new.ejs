@@ -32,6 +32,8 @@
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="radio" name="task[status]"
                                         id="status-radio-<%= status.id %>" value="<%= status.name %>"
+                                        <% if (typeof default_status == 'undefined' && "Next Up"===status.name){ %>
+                                        checked <% } %>
                                         <% if (typeof default_status != 'undefined' && default_status === status.id) { %>checked
                                         <% } %>>
                                     <label class="form-check-label" for="status-radio-<%= status.id %>">
@@ -46,9 +48,9 @@
             </fieldset>
 
             <!-- task[priority] field -->
-            <% var priorityOptions = [ { id: "high",    name: "High" }, 
+            <% var priorityOptions = [ { id: "low",     name: "Low" }, 
                                        { id: "medium",  name: "Medium" },               
-                                       { id: "low",     name: "Low" } ]; %>
+                                       { id: "high",    name: "High" }]; %>
             <fieldset class="form-group">
                 <div class="row">
                     <legend class="col-form-label col-sm-3 pt-0">Priority</legend>
@@ -58,7 +60,8 @@
                             <div class="col">
                                 <div class="form-check-inline">
                                     <input class="form-check-input" type="radio" name="task[priority]"
-                                        id="priority-radio-<%= priority.id %>" value="<%= priority.name %>">
+                                        id="priority-radio-<%= priority.id %>" value="<%= priority.name %>"
+                                        <% if ("Low"===priority.name){ %> checked <% } %>>
                                     <label class="form-check-label" for="status-radio-<%= priority.id %>">
                                         <%= priority.name %>
                                     </label>

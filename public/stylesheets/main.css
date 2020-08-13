@@ -85,6 +85,11 @@
     max-width: fit-content;
 }
 
+.task-title a{
+    text-decoration: none;
+    color: inherit;
+}
+
 /* status dropdown */
 .dropdown-menu  {
     min-width: max-content;

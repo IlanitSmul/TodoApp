@@ -21,10 +21,10 @@
 
         <!-- breadcrumb: list name and href to all lists -->
         <nav aria-label="breadcrumb" class="col-sm-7" id="list-overview-nav">
-            <ol class="breadcrumb my-0">
+            <ol class="breadcrumb my-0 align-items-center">
                 <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                    <p class="list-title" data-editable><%= list.name %></p>
+                    <p class="list-title my-0" data-editable><%= list.name %></p>
                 </li>
             </ol>
         </nav>
@@ -52,11 +52,11 @@
 
             <div class="d-flex flex-row my-2">
 
-                <!-- title of column: "statusOptions" todo: use "p" instead of "button" -->
+                <!-- title of column: "statusOptions" -->
                 <div>
-                    <button type="button" class="btn btn-md status-btn-title status-btn-<%= status.id %>">
+                    <p class="py-2 px-3 my-0 status-btn-title status-btn-<%= status.id %>">
                         <%= status.name %>
-                    </button>
+                    </p>
                 </div>
 
                 <!-- num of tasks in column -->
@@ -95,7 +95,7 @@
                         <div class="flex-column float-right">
 
                             <!-- edit task button -->
-                            <a class="btn btn-md align-top pt-0 pb-2 px-0"
+                            <a class="btn btn-md align-top pt-0 pb-2 px-0 front-link"
                                 href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit" data-toggle="tooltip"
                                 data-placement="right" title="Edit task">
                                 <i class="fas fa-edit"></i>
@@ -104,7 +104,7 @@
                             <!-- delete task button -->
                             <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
                                 method="POST">
-                                <button type="submit" class="btn btn-md pt-0 pb-2 px-0" data-toggle="tooltip"
+                                <button type="submit" class="btn btn-md pt-0 pb-2 px-0 front-link" data-toggle="tooltip"
                                     data-placement="right" title="Delete task">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
@@ -134,8 +134,10 @@
                         </div>
 
                         <!-- task title -->
-                        <div>
-                            <%= task.title %>
+                        <div class="task-title">
+                            <a href="/lists/<%=list._id %>/tasks/<%=task._id %>">
+                                <%= task.title %>
+                            </a>
                         </div>
 
                     </h5>
@@ -150,11 +152,13 @@
                     </p>
 
                     <!-- task due date -->
+                    <% if (task.dueDate != "") { %>
                     <p class="card-text due-date my-2 px-1" data-toggle="tooltip" data-placement="right"
                         title="Due date">
                         <i class="far fa-calendar-alt mr-1"></i>
                         <%= task.dueDate %>
                     </p>
+                    <% } %>
 
                 </div>
 
