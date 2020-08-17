@@ -16,7 +16,9 @@
 
 <div class="container">
 
+    <!-- ------------- -->
     <!-- list overview -->
+    <!-- ------------- -->
     <div class="row list-overview mt-3 mb-4">
 
         <!-- breadcrumb: list name and href to all lists -->
@@ -43,38 +45,41 @@
 
     </div>
 
-    <!-- list tasks -->
+    <!-- ----- -->
+    <!-- table -->
+    <!-- ----- -->
     <div class="row row-cols-1 row-cols-md-3">
 
         <% statusOptions.forEach(function(status){ %>
 
         <div class="col" id="<%= status.id %>-col">
 
-            <div class="d-flex flex-row my-2">
+            <!-- ---------------------------------- -->
+            <!-- column header: status, number, add -->
+            <!-- ---------------------------------- -->
+            <div class="d-flex column-header">
 
                 <!-- title of column: "statusOptions" -->
-                <div>
-                    <p class="py-2 px-3 my-0 status-btn-title status-btn-<%= status.id %>">
-                        <%= status.name %>
-                    </p>
+                <div class="mr-auto p-2">
+                    <%= status.name %>
                 </div>
 
-                <!-- num of tasks in column -->
-                <div class="status-<%= status.id %>-number">
-                    <p class="status-btn-number">
+                <!-- number of tasks in column -->
+                <div class="status-<%= status.id %>-number p-2">
+                    <p id="column-header-number">
                         <%= 
                         list.tasks.filter(function(task){ 
                             return task.status === status.name;
                         }).length;
-                        %>
+                    %>
                     </p>
                 </div>
 
                 <!-- add task "+" buttom (to the specific column) -->
-                <div class="ml-auto">
+                <div class="p-2">
                     <form action="/lists/<%= list._id %>/tasks/new_task" method="POST">
                         <input type="hidden" name="status" value="<%= status.id %>">
-                        <button type="submit" class="btn btn-sm status-btn-plus" data-toggle="tooltip"
+                        <button type="submit" class="btn btn-sm column-header-add-task" data-toggle="tooltip"
                             data-placement="top" title="Create new task">
                             <i class="fas fa-plus"></i>
                         </button>
@@ -83,10 +88,13 @@
 
             </div>
 
-            <!-- task -->
+            <!-- -------------------- -->
+            <!-- column content: task -->
+            <!-- -------------------- -->
             <% list.tasks.forEach(function(task){ %>
             <% if (task.status === status.name) { %>
-            <div class="card mb-3" id="<%=task._id %>" data-current-status="<%= status.id %>">
+            <div class="card mb-3 card-color-<%= task.priority %>" id="<%=task._id %>"
+                data-current-status="<%= status.id %>">
                 <div class="card-body">
 
                     <h5 class="card-title">
@@ -95,33 +103,34 @@
                         <div class="flex-column float-right">
 
                             <!-- edit task button -->
-                            <a class="btn btn-md align-top pt-0 pb-2 px-0 front-link"
+                            <a class="btn btn-md align-top pt-0 pb-2 px-0"
                                 href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit" data-toggle="tooltip"
-                                data-placement="right" title="Edit task">
+                                data-placement="left" title="Edit task">
                                 <i class="fas fa-edit"></i>
                             </a>
 
                             <!-- delete task button -->
                             <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE"
                                 method="POST">
-                                <button type="submit" class="btn btn-md pt-0 pb-2 px-0 front-link" data-toggle="tooltip"
-                                    data-placement="right" title="Delete task">
+                                <button type="submit" class="btn btn-md pt-0 pb-2 px-0" data-toggle="tooltip"
+                                    data-placement="left" title="Delete task">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </form>
 
                             <!-- change status of task button -->
-                            <div data-toggle="tooltip" data-placement="right" title="Change task status">
-                                <div class="dropdown">
+                            <div data-toggle="tooltip" data-placement="left" title="Change task status">
+                                <div class="dropdown ">
                                     <button class="btn btn-md pt-0 pb-2 px-0" type="button"
                                         id="change-status-dropdown-button" aria-haspopup="true" aria-expanded="false"
                                         data-toggle="dropdown">
                                         <i class="fas fa-exchange-alt"></i>
                                     </button>
-                                    <div class="dropdown-menu m-0" aria-labelledby="change-status-dropdown-button">
+                                    <div class="dropdown-menu dropdown-menu-right m-0 p-0"
+                                        aria-labelledby="change-status-dropdown-button">
                                         <% statusOptions.forEach(function(selected_status){ %>
                                         <button type="submit"
-                                            class="btn btn-sm status-btn-title status-btn-<%= selected_status.id %>"
+                                            class="dropdown-item btn btn-sm px-1 status-btn-title status-btn-<%= selected_status.id %>"
                                             data-task-id="<%= task._id %>"
                                             data-selected-status="<%= selected_status.id %>">
                                             <%= selected_status.name %>
@@ -143,11 +152,20 @@
                     </h5>
 
                     <!-- task priority -->
-                    <p class="card-text my-2 px-2 priority <%= task.priority %>" data-toggle="tooltip"
-                        data-placement="right" title="Priority">
+                    <p class="card-text my-2 px-1 priority <%= task.priority %> priority-color-<%= task.priority %>"
+                        data-toggle="tooltip" data-placement="right" title="Priority">
                         <%= task.priority %>
+                        <% if (task.priority == "Low") { %>
+                        <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                        <% } %>
+                        <% if (task.priority == "Medium") { %>
+                        <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                        <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                        <% } %>
                         <% if (task.priority == "High") { %>
-                        <i class="fas fa-burn" style="color: red"></i>
+                        <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                        <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                        <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
                         <% } %>
                     </p>
 

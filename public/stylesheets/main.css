@@ -1,37 +1,6 @@
-/* priority - colors */
-
-.priority{
-    color: rgb(55, 53, 47);
-    border-radius: 3px;
-    width: max-content;
-}
-
-.High {
-    background: rgba(255, 0, 0, 0.35);
-}
-
-.Medium {
-    background: rgba(255, 153, 51, 0.5);
-}
-
-.Low {
-    background: rgba(26, 228, 228, 0.5);
-}
-
-/* status - colors */
-
-.status-btn-next-up {
-    background: rgba(206, 205, 202, 0.5);
-}
-.status-btn-in-progress {
-    background: rgba(233, 168, 0, 0.2);
-}
-.status-btn-complete {
-    background: rgba(0, 135, 107, 0.2);
-}
-
-
+/* *********************************** */
 /* list overview */
+/* *********************************** */
 
 .list-overview{
     background:rgb(245,245,245);
@@ -50,57 +19,127 @@
     border-radius: .25rem;
     outline: none;
     background: rgb(255,255,255)
-  }
-
-/* status titles line */
-
-.status-btn-title{
-    color: rgb(55, 53, 47);
-    border-radius: 3px;
 }
 
-.status-btn-number{
-    color: rgba(55, 53, 47 ,0.4);
-    font-weight: 600;
-    padding: .375rem .75rem;
-    margin: 0;
-    border: 1px solid transparent;
-    border-radius: .25rem;
-    text-align: center;
-    vertical-align: middle;
- }
+/* *********************************** */
+/* priority - colors */
+/* *********************************** */
 
-.status-btn-plus{
-    color: rgba(55, 53, 47 ,0.4);
-    font-size: 0.9em;
+.card-color-High {
+    background-color: rgb(242,120,143);
 }
- 
+.card-color-Medium {
+    background-color: rgb(227,229,70);
+}
+.card-color-Low {
+    background-color: rgb(115,202,196);
+}
+
+.priority-color-High {
+    background : rgb(255,151,173);
+}
+.priority-color-Medium {
+    background  : rgb(243,244,160);
+}
+.priority-color-Low {
+    background : rgb(0,255,255);
+}
+
+.fire-icon-color-High {
+    color: red;
+}
+.fire-icon-color-Medium {
+    color: orange;
+}
+.fire-icon-color-Low {
+    color: royalblue;
+}
+
+
+/* *********************************** */
+/* status - colors  todo: delete*/
+/* *********************************** */
+
+.status-btn-title {
+    color: #2500ab;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.status-btn-next-up {
+    /* background: rgba(206, 205, 202, 0.5); */
+}
+.status-btn-in-progress {
+    /* background: rgba(233, 168, 0, 0.2); */
+}
+.status-btn-complete {
+    /* background: rgba(0, 135, 107, 0.2); */
+}
+
+
+/* *********************************** */
+/* column header: status, number, add */
+/* *********************************** */
+
+.column-header > * {
+    color: #2500ab;
+    font-size: xx-large;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.column-header-add-task > * {
+    color: #2500ab;
+    font-size: x-large;
+}
+
+
+/* *********************************** */
  /* task card */
+/* *********************************** */
 
+/* card */
+ .card {
+    border-radius: 0%;
+    border: none;
+ }
 .card-body {
     padding: 0.6rem;
 }
 
-.due-date{
-    max-width: fit-content;
+/* task title */
+.task-title {
+    font-family: 'Sriracha', cursive;
+    font-size: smaller;
 }
-
-.task-title a{
+.task-title a {
     text-decoration: none;
     color: inherit;
 }
 
+/* priority */
+.priority {
+    color: rgb(55, 53, 47);
+    width: max-content;
+    text-transform: uppercase;
+    font-family: 'Delius', cursive;
+    font-size: smaller;
+}
+
+/* due-date */
+.due-date {
+    max-width: fit-content;
+}
+
 /* status dropdown */
-.dropdown-menu  {
-    min-width: max-content;
-    padding: 0;
+.dropdown-menu {
+    min-width: min-content;
+    border: none;
+    border-radius: unset;
 }
 
-.dropdown-menu *  {
-   width: 100%;
-}
 
+/* *********************************** */
 /* icons  */
+/* *********************************** */
 
 i {
     color: rgba(55, 53, 47 ,0.4);
