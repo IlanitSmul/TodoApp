@@ -19,7 +19,7 @@
     <!-- ------------- -->
     <!-- list overview -->
     <!-- ------------- -->
-    <div class="row list-overview mt-3 mb-4">
+    <div class="row list-overview mx-0 mt-3 mb-2">
 
         <!-- breadcrumb: list name and href to all lists -->
         <nav aria-label="breadcrumb" class="col-sm-7" id="list-overview-nav">
@@ -34,11 +34,16 @@
         <div class="col-sm-5 d-flex justify-content-end align-self-center" id="list-overview-buttons">
 
             <!-- add task button -->
-            <a class="btn btn-xs btn-primary mx-2" href="/lists/<%= list._id %>/tasks/new">New Task</a>
+            <a class="btn btn-xs mx-2" href="/lists/<%= list._id %>/tasks/new">
+                <i class="fas fa-plus pr-1"></i> New Task
+            </a>
 
             <!-- delete list button -->
             <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
-                <button class="btn btn-xs btn-dark mx-2">Delete List</button>
+                <button class="btn btn-xs mx-2">
+                    <i class="fas fa-trash-alt pr-1"></i>
+                    Delete List
+                </button>
             </form>
 
         </div>

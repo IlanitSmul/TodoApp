@@ -2,15 +2,26 @@
 /* list overview */
 /* *********************************** */
 
-.list-overview{
-    background:rgb(245,245,245);
-}
+/* breadcrumb: list name and href to all lists */
 
-.breadcrumb{
+.breadcrumb {
     background: none;
 }
 
-.list-name{
+.list-overview {
+    background: #ff992a;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.breadcrumb-item a {
+    color: #2500ab;
+}
+
+.list-title, .list-name {
+    color: black;
+}
+
+.list-name {
     margin-bottom: 0;
     padding: 0;
     border: none;
@@ -18,7 +29,13 @@
 .list-name:focus {
     border-radius: .25rem;
     outline: none;
-    background: rgb(255,255,255)
+    background: #ffbd74;
+}
+
+/* add task button + delete list button */
+
+#list-overview-buttons .btn {
+    background-color: #ffbd74;
 }
 
 /* *********************************** */
@@ -63,16 +80,6 @@
 .status-btn-title {
     color: #2500ab;
     font-family: 'Permanent Marker', cursive;
-}
-
-.status-btn-next-up {
-    /* background: rgba(206, 205, 202, 0.5); */
-}
-.status-btn-in-progress {
-    /* background: rgba(233, 168, 0, 0.2); */
-}
-.status-btn-complete {
-    /* background: rgba(0, 135, 107, 0.2); */
 }
 
 
