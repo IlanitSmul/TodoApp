@@ -19,11 +19,11 @@
     <!-- ------------- -->
     <!-- list overview -->
     <!-- ------------- -->
-    <div class="row list-overview mx-0 mt-3 mb-2">
+    <div class="row list-overview mx-0 mt-3 mb-2 align-items-center">
 
         <!-- breadcrumb: list name and href to all lists -->
-        <nav aria-label="breadcrumb" class="col-sm-7" id="list-overview-nav">
-            <ol class="breadcrumb my-0 align-items-center">
+        <nav aria-label="breadcrumb" class="col-sm-7 list-overview-nav">
+            <ol class="breadcrumb my-0">
                 <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
                 <li class="breadcrumb-item active" aria-current="page">
                     <p class="list-title my-0" data-editable><%= list.name %></p>
@@ -31,7 +31,7 @@
             </ol>
         </nav>
 
-        <div class="col-sm-5 d-flex justify-content-end align-self-center" id="list-overview-buttons">
+        <div class="col-sm-5 py-2 d-flex justify-content-end list-overview-buttons">
 
             <!-- add task button -->
             <a class="btn btn-xs mx-2" href="/lists/<%= list._id %>/tasks/new">

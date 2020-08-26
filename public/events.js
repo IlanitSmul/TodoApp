@@ -79,3 +79,9 @@ $('.dropdown-menu button').on('click', function (e) {
         }
     });
 });
+
+// page "add new task" - reset form button
+$('#add-task-form-reset-button').on('click', function (e) {
+    e.preventDefault();
+    $('#add-task-form').trigger("reset");
+});

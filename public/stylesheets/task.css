@@ -1,0 +1,71 @@
+/* *********************************** */
+/* list overview */
+/* *********************************** */
+.list-overview.task-overview {
+    background: #a8b7d1;
+}
+.task-overview .list-overview-buttons .btn {
+    background-color: #ffd42d;
+}
+
+/* *********************************** */
+/* form */
+/* *********************************** */
+
+/* form: background color */
+.task-form {
+    background: rgba(255,255,255,0.7);
+}
+
+/* form-line */
+.form-line {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* form: label */
+.col-form-label {
+    color: #2500ab;
+    font-family: 'Sriracha';
+    font-size: larger;
+}
+.fa-asterisk { /* "*" before label*/
+    color: #2500ab;
+    font-size: medium;
+    font-style: italic;
+}
+
+/* form: input */
+.task-form input, .form-input {
+    font-family: 'Open Sans', sans-serif;
+}
+
+/* form: data */
+.form-data {
+    background-color: #c7c6c4;
+    font-family: 'Open Sans', sans-serif;
+    align-self: center;
+}
+
+/* from data - title */
+.form-data.form-task-title { 
+    background-color: #ffd42d;
+    font-family: 'Sriracha', cursive;
+    font-size: large;
+}
+.form-data.form-text { /* text (paragraph) data */
+    background-color: #b4c9e6;
+}
+.form-data.form-text-pre { /* text (paragraph) data */
+    white-space: pre-wrap;
+}
+.not-specified { /* empty data */
+    font-family: 'Kanit', sans-serif;
+}
+
+/* form: submit button */
+.add-task-form-submit-button {
+    background-color: #ffd42d;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+

@@ -8,6 +8,10 @@
     background: none;
 }
 
+.breadcrumb-item+.breadcrumb-item::before { /* the sperator "/" */
+    color: black; 
+}
+
 .list-overview {
     background: #ff992a;
     font-family: 'Noto Sans JP', sans-serif;
@@ -17,7 +21,7 @@
     color: #2500ab;
 }
 
-.list-title, .list-name {
+.list-title, .list-name, .breadcrumb-item.active{
     color: black;
 }
 
@@ -34,7 +38,7 @@
 
 /* add task button + delete list button */
 
-#list-overview-buttons .btn {
+.list-overview-buttons .btn {
     background-color: #ffbd74;
 }
 

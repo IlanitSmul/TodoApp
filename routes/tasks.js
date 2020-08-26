@@ -61,7 +61,8 @@ router.post("/", function (req, res) {
                     task.save();
                     list.tasks.push(task);
                     list.save();
-                    res.redirect('/lists/' + list._id);
+                    // res.redirect('/lists/' + list._id); // todo: check to where to redirect
+                    res.redirect("/lists/" + list._id + "/tasks/" + task._id);
                 }
             });
         }
@@ -107,7 +108,8 @@ router.put("/:task_id", function (req, res) {
             console.log(err);
         } else {
             console.log(updatedTask); // dlog
-            res.redirect("/lists/" + req.params.list_id);
+            // res.redirect("/lists/" + req.params.list_id); // todo: check to where to redirect
+            res.redirect("/lists/" + req.params.list_id + "/tasks/" + req.params.task_id);
         }
     });
 });

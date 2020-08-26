@@ -1,109 +1,125 @@
 <%- include ("../partials/header"); %>
 
-<!-- todo: change this "show page" (currently this page is the same as "update page") -->
+<div class="container task">
 
-<div class="container">
+    <!-- ------------- -->
+    <!-- list overview -->
+    <!-- ------------- -->
+    <div class="row list-overview task-overview mx-0 mt-3 mb-2 align-items-center">
 
-    <!-- page title-->
-    <h1 style="text-align: center">Show Task of <%= list.name %> List </h1>
+        <!-- breadcrumb: list name and href to all lists -->
+        <nav aria-label="breadcrumb" class="col-sm-7 list-overview-nav">
+            <ol class="breadcrumb my-0">
+                <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
+                <li class="breadcrumb-item"> <a href="/lists/<%= list._id %>"> <%= list.name %> </a> </li>
+                <li class="breadcrumb-item active" aria-current="page"> Show Task </li>
+            </ol>
+        </nav>
 
-    <!-- form: update task -->
-    <div class="row row-cols-2" id="update-task-form">
+        <div class="col-sm-5 py-2 d-flex justify-content-end list-overview-buttons">
 
-        <form action="/lists/<%= list._id %>/tasks/<%= task._id %>?_method=PUT" method="POST">
+            <!-- edit current task button -->
+            <a class="btn btn-xs mx-2" href="/lists/<%=list._id %>/tasks/<%=task._id %>/edit">
+                <i class="fas fa-edit pr-1"></i> Edit Task
+            </a>
 
-            <!-- task[title] field -->
-            <div class="form-group row">
-                <label for="task-title" class="col-sm-3 col-form-label">Title</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="task-title" name="task[title]"
-                        value="<%= task.title %>">
-                </div>
-            </div>
-
-            <!-- task[status] field -->
-            <% var statusOptions = [ { id: "next-up",     name: "Next Up" }, 
-                       { id: "in-progress", name: "In Progress" },               
-                       { id: "complete",    name: "Complete" } ]; %>
-            <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-3 pt-0">Status</legend>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <% statusOptions.forEach(function(status){ %>
-                            <div class="col">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="task[status]"
-                                        id="status-radio-<%= status.id %>" value="<%= status.name %>"
-                                        <% if (task.status===status.name){ %> checked <% } %>>
-                                    <label class="form-check-label" for="status-radio-<%= status.id %>">
-                                        <%= status.name %>
-                                    </label>
-                                </div>
-                            </div>
-                            <% }) %>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- task[priority] field -->
-            <% var priorityOptions = [  { id: "low",     name: "Low" }, 
-                                        { id: "medium",  name: "Medium" },               
-                                         { id: "high",    name: "High" }]; %>
-            <fieldset class="form-group">
-                <div class="row">
-                    <legend class="col-form-label col-sm-3 pt-0">Priority</legend>
-                    <div class="col-sm-9">
-                        <div class="row">
-                            <% priorityOptions.forEach(function(priority){ %>
-                            <div class="col">
-                                <div class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="task[priority]"
-                                        id="priority-radio-<%= priority.id %>" value="<%= priority.name %>"
-                                        <% if (task.priority===priority.name){ %> checked <% } %>>
-                                    <label class="form-check-label" for="status-radio-<%= priority.id %>">
-                                        <%= priority.name %>
-                                    </label>
-                                </div>
-                            </div>
-                            <% }) %>
-                        </div>
-                    </div>
-                </div>
-            </fieldset>
-
-            <!-- task[dueDate] field -->
-            <div class="form-group row">
-                <label for="task-due-date" class="col-sm-3 col-form-label">Due Date</label>
-                <div class="col-sm-9">
-                    <input type="date" class="form-control" id="task-due-date" name="task[dueDate]"
-                        value="<%= task.dueDate %>">
-                </div>
-            </div>
-
-            <!-- task[description] field -->
-            <div class="form-group row">
-                <label for="task-description" class="col-sm-3 col-form-label">Description</label>
-                <div class="col-sm-9">
-                    <textarea type="text" class="form-control" rows="7" id="task-description"
-                        name="task[description]"><%= task.description %></textarea>
-                </div>
-            </div>
-
-            <!-- submit button -->
-            <div class="form-group">
-                <button class="btn btn-primary">Submit!</button>
-            </div>
-
-
-        </form>
+        </div>
 
     </div>
 
-    <!-- go back link -->
-    <div class="row">
-        <a href="/lists/<%= list._id %>">Go Back</a>
+    <!-- --------------- -->
+    <!-- form: show task -->
+    <!-- --------------- -->
+    <% var statusOptions = 
+    [ { id: "next-up",     name: "Next Up" }, 
+      { id: "in-progress", name: "In Progress" },               
+      { id: "complete",    name: "Complete" } 
+    ]; %>
+    <% var priorityOptions = 
+    [ { id: "low",     name: "Low" }, 
+      { id: "medium",  name: "Medium" },               
+      { id: "high",    name: "High" }
+    ]; %>
+
+    <div class="task-form p-3">
+        <form>
+
+            <!-- ----------------- -->
+            <!-- task[title] field -->
+            <!-- ----------------- -->
+            <div class="form-group row form-line">
+                <div class="col-sm-2 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Title:
+                </div>
+                <div class="col-sm-10 py-2 form-data form-task-title"> <%= task.title %> </div>
+            </div>
+
+            <!-- ------------------ -->
+            <!-- task[status] field -->
+            <!-- ------------------ -->
+            <div class="form-group row form-line">
+                <div class="col-sm-2 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Status:
+                </div>
+                <div class="col-sm-10 py-2 form-data"> <%= task.status %> </div>
+            </div>
+
+            <!-- -------------------- -->
+            <!-- task[priority] field -->
+            <!-- -------------------- -->
+            <div class="form-group row form-line">
+                <div class="col-sm-2 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Priority:
+                </div>
+                <div class="col-sm-10 py-2 form-data"> <%= task.priority %>
+                    <% if (task.priority == "Low") { %>
+                    <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                    <% } %>
+                    <% if (task.priority == "Medium") { %>
+                    <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                    <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                    <% } %>
+                    <% if (task.priority == "High") { %>
+                    <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                    <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                    <i class="fas fa-burn fire-icon-color-<%= task.priority %>"></i>
+                    <% } %>
+                </div>
+            </div>
+
+            <!-- ------------------- -->
+            <!-- task[dueDate] field -->
+            <!-- ------------------- -->
+            <div class="form-group row form-line">
+                <div class="col-sm-2 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Due Date:
+                </div>
+                <div class="col-sm-10 py-2 form-data">
+                    <% if (task.dueDate != "") { %>
+                    <%= task.dueDate %>
+                    <% } else { %>
+                    <span class="not-specified">--- Not Specified ---</span>
+                    <% } %>
+                </div>
+
+            </div>
+
+            <!-- ----------------------- -->
+            <!-- task[description] field -->
+            <!-- ----------------------- -->
+            <div class="form-group row form-line">
+                <div class="col-sm-2 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Description:
+                </div>
+                <div class="col-sm-10 py-2 form-data form-text">
+                    <% if (task.description != "") { %>
+                    <div class="form-text-pre"><%= task.description %> </div>
+                    <% } else { %>
+                    <span class="not-specified">--- Not Specified ---</span>
+                    <% } %></div>
+            </div>
+
+        </form>
     </div>
 
 </div>
