@@ -56,7 +56,7 @@
 .form-data.form-text { /* text (paragraph) data */
     background-color: #b4c9e6;
 }
-.form-data.form-text-pre { /* text (paragraph) data */
+.form-text-pre { /* text (paragraph) data */
     white-space: pre-wrap;
 }
 .not-specified { /* empty data */
