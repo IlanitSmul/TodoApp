@@ -1,4 +1,7 @@
-/* welcome text and "view all lists" button  */
+/* ********************************************** */
+/* landing-header: landing-title + landing-button */
+/* ********************************************** */
+
 #landing-header {
     /* all of the elements inside the landing-header div will be in front of the background images */
     z-index: 1;
@@ -7,13 +10,64 @@
     /* center our text and button */
     text-align: center;
     /* vertically center our div, since it's contents take up quite a bit of space we use 40vh (view height) instead of 50, this way the content looks more visually centered */
-    padding-top: 40vh;
-}
-#landing-header h1 {
-    color: #000;
+    padding-top: 25vh;
 }
 
+/* **************************************** */
+/* landing-title: welcome text */
+/* **************************************** */
+
+#landing-title {
+    color: #2500ab;
+    font-family: 'Sriracha', cursive;
+}
+#landing-title span {
+    font-weight: bolder;
+}
+
+#landing-title { /* Extra small devices (portrait phones, less than 576px) */
+    font-size: 8rem;
+}
+@media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
+}
+@media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
+}
+@media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
+    #landing-title {
+        font-size: 5rem;
+    } 
+}
+@media (min-width: 1200px) { /* Extra large devices (large desktops, 1200px and up) */
+}
+
+/* **************************************** */
+/* "view all lists" button */
+/* **************************************** */
+
+#landing-buttun {
+    background-color: #ffd42d;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#landing-buttun { /* Extra small devices (portrait phones, less than 576px) */
+    font-size: xxx-large;
+}
+@media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
+}
+@media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
+}
+@media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
+    #landing-buttun {
+        font-size: initial;
+    } 
+}
+@media (min-width: 1200px) { /* Extra large devices (large desktops, 1200px and up) */
+}
+
+/* **************************************** */
 /* background image */
+/* **************************************** */
+
 .background {
     width: 100%;
     height: 100%;
