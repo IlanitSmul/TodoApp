@@ -1,0 +1,21 @@
+/* *************************************************** */
+/* jumbotron: jumbotron-title + jumbotron-add-list-btn */
+/* *************************************************** */
+
+.jumbotron{ 
+    background: url(https://cdn.pixabay.com/photo/2017/08/06/06/18/checklist-2589418_1280.jpg) no-repeat center center; 
+    border-radius: unset;
+}
+
+.jumbotron-title {
+    color: #2500ab;
+    font-family: 'Sriracha', cursive;
+}
+.jumbotron-title span {
+    font-weight: bold;
+}
+
+.jumbotron-add-list-btn {
+    background-color: #ffd42d;
+    font-family: 'Noto Sans JP', sans-serif;
+}
