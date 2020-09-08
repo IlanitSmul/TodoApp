@@ -23,9 +23,9 @@
 
         <!-- breadcrumb: list name and href to all lists -->
         <nav aria-label="breadcrumb" class="col-sm-7 list-overview-nav">
-            <ol class="breadcrumb my-0">
-                <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
-                <li class="breadcrumb-item active" aria-current="page">
+            <ol class="breadcrumb my-0 px-0">
+                <li class="breadcrumb-item not-active"> <a href="/lists"> My Lists </a> </li>
+                <li class="breadcrumb-item active active-data-editable" aria-current="page">
                     <p class="list-title my-0" data-editable><%= list.name %></p>
                 </li>
             </ol>
@@ -36,6 +36,11 @@
             <!-- add task button -->
             <a class="btn btn-xs mx-2" href="/lists/<%= list._id %>/tasks/new">
                 <i class="fas fa-plus pr-1"></i> New Task
+            </a>
+
+            <!-- edit list button -->
+            <a class="btn btn-xs mx-2" href="/lists/<%= list._id %>/edit">
+                <i class="fas fa-edit pr-1"></i> Edit List
             </a>
 
             <!-- delete list button -->

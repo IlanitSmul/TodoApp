@@ -34,15 +34,23 @@
     color: black;
 }
 
-.list-name {
+.list-name, .list-title {
     margin-bottom: 0;
     padding: 0;
     border: none;
+    width: 95%;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 .list-name:focus {
     border-radius: .25rem;
     outline: none;
     background: #ffbd74;
+}
+.active-data-editable { /* width of editable list name */
+    overflow: hidden;
+    width: 90%;
 }
 
 /* add task button + delete list button */

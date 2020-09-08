@@ -2,6 +2,7 @@ var mongoose = require("mongoose");
 
 var listSchema = new mongoose.Schema({
     name: String,
+    description: String,
     createDate: String,
     lastUpdateDate: String,
     tasks: [{

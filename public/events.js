@@ -3,7 +3,7 @@ $('body').on('click', '[data-editable]', function (e) {
     e.preventDefault();
 
     var $original_p = $(this);
-    var $input = $('<input/>').val($original_p.text()).addClass("list-name");
+    var $input = $('<input/>').val($original_p.text()).addClass("list-name").attr("maxlength", "65");
     $original_p.replaceWith($input);
 
     var save = function () {

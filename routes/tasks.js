@@ -47,7 +47,7 @@ router.get("/new", function (req, res) {
     })
 });
 
-// Create|POST - Create a new task, then redirect "/lists/:list_id"
+// Create|POST - Create a new task, then redirect "/lists/:list_id/tasks/task_id"
 router.post("/", function (req, res) {
     List.findById(req.params.list_id, function (err, list) {
         if (err) {
@@ -61,7 +61,6 @@ router.post("/", function (req, res) {
                     task.save();
                     list.tasks.push(task);
                     list.save();
-                    // res.redirect('/lists/' + list._id); // todo: check to where to redirect
                     res.redirect("/lists/" + list._id + "/tasks/" + task._id);
                 }
             });
@@ -101,14 +100,13 @@ router.get("/:task_id/edit", function (req, res) {
     })
 });
 
-// Update|PUT - Update particular task, then redirect "/lists/:list_id"
+// Update|PUT - Update particular task, then redirect "/lists/:list_id/tasks/:task_id"
 router.put("/:task_id", function (req, res) {
     Task.findByIdAndUpdate(req.params.task_id, req.body.task, { new: true }, function (err, updatedTask) {
         if (err) {
             console.log(err);
         } else {
             console.log(updatedTask); // dlog
-            // res.redirect("/lists/" + req.params.list_id); // todo: check to where to redirect
             res.redirect("/lists/" + req.params.list_id + "/tasks/" + req.params.task_id);
         }
     });

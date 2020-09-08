@@ -10,18 +10,50 @@
         <a class="btn btn-md mt-1 jumbotron-add-list-btn" href="/lists/new" role="button">Create New Tasks List</a>
     </header>
 
-    <div class="row row-cols-1 row-cols-md-3">
+    <!-- ------------ -->
+    <!-- table: tasks -->
+    <!-- ------------ -->
+    <div class="card-columns">
         <% lists.forEach(function(list){ %>
-        <div class="col">
-            <div class="card mb-4">
+        <div class="">
+            <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title"><%= list.name %></h5>
-                    <p class="card-text">add total number of tasks (open/complete), priority, due date...</p>
-                    <a href="/lists/<%= list._id %>" class="btn btn-primary">More Info</a>
+
+                    <!-- list name -->
+                    <h5 class="card-title mb-1">
+                        <div class="card-list-name">
+                            <a href="/lists/<%= list._id %>" class="stretched-link">
+                                <%= list.name %>
+                            </a>
+                        </div>
+                    </h5>
+
+                    <!-- list description -->
+                    <p class="card-text list-description mb-2">
+                        <%= list.description %>
+                    </p>
+
+                    <!-- status summary -->
+                    <div class="status-summary">
+                        <p class="card-text mb-1">
+                            <span><i class="fas fa-times"></i></span>
+                            <span class="card-status-number"><%= list.nextUp %></span>
+                            <span>next up</span>
+                        </p>
+                        <p class="card-text mb-1">
+                            <span><i class="fas fa-ellipsis-h"></i></span>
+                            <span class="card-status-number"><%= list.inProgress %></span>
+                            <span>in progress</span>
+                        </p>
+                        <p class="card-text mb-1">
+                            <span><i class="fas fa-check"></i></span>
+                            <span class="card-status-number"><%= list.complete %></span>
+                            <span>complete</span>
+                        </p>
+                    </div>
+
                 </div>
-                <div class="card-footer">
-                    <small class="text-muted">Last updated: <%= list.lastUpdateDate %></small>
-                </div>
+
             </div>
         </div>
         <% }); %>

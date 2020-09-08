@@ -19,3 +19,85 @@
     background-color: #ffd42d;
     font-family: 'Noto Sans JP', sans-serif;
 }
+
+/* *********************************** */
+ /* table */
+/* *********************************** */
+
+/* cards layout */
+.card-columns { /* Extra small devices (portrait phones, less than 576px) */
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+} 
+@media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
+}
+@media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
+     .card-columns {  
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    } 
+}
+@media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
+    .card-columns {  
+        -webkit-column-count: 3;
+        -moz-column-count: 3;
+        column-count: 3;
+    } 
+}
+@media (min-width: 1200px) { /* Extra large devices (large desktops, 1200px and up) */
+}
+
+/* *********************************** */
+/* card of list */
+/* *********************************** */
+
+/* list-name */
+.card-list-name {
+    font-family: 'Sriracha', cursive;
+    color: #2500ab;
+}
+.card-list-name a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* list-description */
+.list-description {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 90%;
+    font-weight: bolder;
+}
+
+/* status-summary */
+.status-summary {
+    font-family: 'Open Sans', sans-serif;
+    font-size: smaller;
+
+}
+.fa-times {
+    color: red;
+}
+.fa-ellipsis-h {
+    color: orange;
+}
+.fa-check {
+    color: green;
+}
+.status-summary * { /* space between status lines */
+    margin-bottom: .10rem!important;
+}
+.card-text span:nth-child(1) i{ /* icon */
+    width: 13px;
+    text-align: center;
+}
+.card-text span:nth-child(2) { /* number */
+    padding-left: 1px;
+    width: 20px;
+    text-align: center;
+    display: inline-block;
+ }
+.card-text span:nth-child(3) { /* status */
+    padding-left: 1px;
+}

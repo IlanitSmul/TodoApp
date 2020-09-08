@@ -1,6 +1,6 @@
 <%- include ("../partials/header"); %>
 
-<div class="container task">
+<div class="container">
 
     <!-- ------------- -->
     <!-- list overview -->
@@ -8,15 +8,15 @@
     <div class="row list-overview task-overview mx-0 mt-3 mb-2 align-items-center">
 
         <!-- breadcrumb: list name and href to all lists -->
-        <nav aria-label="breadcrumb" class="col-sm-7 list-overview-nav">
-            <ol class="breadcrumb my-0">
+        <nav aria-label="breadcrumb" class="col-sm-9 list-overview-nav">
+            <ol class="breadcrumb my-0 px-0">
                 <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
                 <li class="breadcrumb-item"> <a href="/lists/<%= list._id %>"> <%= list.name %> </a> </li>
                 <li class="breadcrumb-item active" aria-current="page"> Edit Task </li>
             </ol>
         </nav>
 
-        <div class="col-sm-5 py-2 d-flex justify-content-end list-overview-buttons">
+        <div class="col-sm-3 py-2 d-flex justify-content-end list-overview-buttons">
 
             <!-- delete current task button -->
             <form class="delete-form" action="/lists/<%=list._id %>/tasks/<%=task._id %>?_method=DELETE" method="POST">
@@ -51,7 +51,7 @@
             <!-- task[title] field -->
             <!-- ----------------- -->
             <div class="form-group row form-line">
-                <label for="task-title" class="col-sm-2 col-form-label">
+                <label for="task-title" class="col-sm-2 pr-0 col-form-label">
                     <i class="fas fa-asterisk ita pr-1"></i> Title:
                 </label>
                 <div class="col-sm-10">
@@ -65,7 +65,7 @@
             <!-- ------------------ -->
             <fieldset class="form-group">
                 <div class="row form-line">
-                    <legend class="col-form-label col-sm-2 pt-0">
+                    <legend class="col-form-label col-sm-2 pr-0 pt-0">
                         <i class="fas fa-asterisk ita pr-1"></i> Status:
                     </legend>
                     <div class="col-sm-10">
@@ -92,7 +92,7 @@
             <!-- -------------------- -->
             <fieldset class="form-group">
                 <div class="row form-line">
-                    <legend class="col-form-label col-sm-2 pt-0">
+                    <legend class="col-form-label col-sm-2 pr-0 pt-0">
                         <i class="fas fa-asterisk ita pr-1"></i> Priority:
                     </legend>
                     <div class="col-sm-10">
@@ -130,7 +130,7 @@
             <!-- task[dueDate] field -->
             <!-- ------------------- -->
             <div class="form-group row form-line">
-                <label for="task-due-date" class="col-sm-2 col-form-label">
+                <label for="task-due-date" class="col-sm-2 pr-0 col-form-label">
                     <i class="fas fa-asterisk ita pr-1"></i> Due Date:
                 </label>
                 <div class="col-sm-10">
@@ -143,7 +143,7 @@
             <!-- task[description] field -->
             <!-- ----------------------- -->
             <div class="form-group row form-line">
-                <label for="task-description" class="col-sm-2 col-form-label">
+                <label for="task-description" class="col-sm-2 pr-0 col-form-label">
                     <i class="fas fa-asterisk ita pr-1"></i> Description:
                 </label>
                 <div class="col-sm-10">

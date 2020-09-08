@@ -1,21 +1,78 @@
-<!DOCTYPE html>
-<html>
-
 <%- include ("../partials/header"); %>
 
 <div class="container">
-    <h1>Edit <%= list.name %> </h1>
-    <div>
-        <form action="/lists/<%= list._id %>?_method=PUT" method="POST">
-            <div class="form-group">
-                <input class="form-control" type="text" name="list[name]" value="<%= list.name %>">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary">Submit!</button>
-            </div>
-        </form>
-        <a href="/lists">Go Back</a>
+
+    <!-- ------------- -->
+    <!-- list overview -->
+    <!-- ------------- -->
+    <div class="row list-overview task-overview mx-0 mt-3 mb-2 align-items-center">
+
+        <!-- breadcrumb: list name and href to all lists -->
+        <nav aria-label="breadcrumb" class="col-sm-9 list-overview-nav">
+            <ol class="breadcrumb my-0 px-0">
+                <li class="breadcrumb-item"> <a href="/lists"> My Lists </a> </li>
+                <li class="breadcrumb-item"> <a href="/lists/<%= list._id %>"> <%= list.name %> </a> </li>
+                <li class="breadcrumb-item active" aria-current="page"> Edit List </li>
+            </ol>
+        </nav>
+
+        <div class="col-sm-3 py-2 d-flex justify-content-end list-overview-buttons">
+
+            <!-- delete current list button -->
+            <form class="delete-form" action="/lists/<%= list._id %>?_method=DELETE" method="POST">
+                <button class="btn btn-xs mx-2">
+                    <i class="fas fa-trash-alt pr-1"></i>
+                    Delete List
+                </button>
+            </form>
+
+        </div>
+
     </div>
+
+    <!-- --------------- -->
+    <!-- form: edit list -->
+    <!-- --------------- -->
+
+    <div class="task-form p-3">
+        <form action="/lists/<%= list._id %>?_method=PUT" method="POST">
+
+            <!-- ---------------- -->
+            <!-- list[name] field -->
+            <!-- ---------------- -->
+            <div class="form-group row form-line">
+                <label for="list-name" class="col-sm-2 pr-0 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Name:
+                </label>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control form-input" rows="1" maxlength="65" id="list-name"
+                        name="list[name]" required><%= list.name %></textarea>
+                </div>
+            </div>
+
+            <!-- ----------------------- -->
+            <!-- list[description] field -->
+            <!-- ----------------------- -->
+            <div class="form-group row form-line">
+                <label for="list-description" class="col-sm-2 pr-0 col-form-label">
+                    <i class="fas fa-asterisk ita pr-1"></i> Description:
+                </label>
+                <div class="col-sm-10">
+                    <textarea type="text" class="form-control form-input" rows="3" maxlength="250" id="list-description"
+                        name="list[description]"><%= list.description %></textarea>
+                </div>
+            </div>
+
+            <!-- ------------- -->
+            <!-- submit button -->
+            <!-- ------------- -->
+            <div class="form-group d-flex justify-content-center">
+                <button class="btn add-task-form-submit-button">Submit!</button>
+            </div>
+
+        </form>
+    </div>
+
 </div>
 
 <%- include ("../partials/footer"); %>
