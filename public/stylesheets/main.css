@@ -7,6 +7,14 @@
     font-family: 'Sriracha', cursive;
 }
 
+.navbar-light .navbar-nav .nav-link { 
+    color: #2500ab;
+    font-family: 'Open Sans', sans-serif;
+}
+.navbar-light .navbar-nav .nav-link i { 
+    color: #2500ab;
+}
+
 /* *********************************** */
 /* list overview */
 /* *********************************** */
@@ -50,7 +58,7 @@
 }
 .active-data-editable { /* width of editable list name */
     overflow: hidden;
-    width: 90%;
+    width: 85%;
 }
 
 /* add task button + delete list button */
@@ -95,7 +103,7 @@
 
 
 /* *********************************** */
-/* status - colors  todo: delete*/
+/* status - colors (status change inside card)
 /* *********************************** */
 
 .status-btn-title {

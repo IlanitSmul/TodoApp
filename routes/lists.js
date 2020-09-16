@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var List = require("../models/list");
 var Task = require("../models/task");
+var middleware = require("../middleware");
 const { version } = require("mongoose");
 
 // ============================
@@ -25,7 +26,7 @@ router.patch("/:list_id/update_name", function (req, res) {
 // ============================
 
 // Index|GET - List all task lists ("/lists")
-router.get("/", function (req, res) {
+router.get("/", middleware.isLoggedIn, function (req, res) {
     List.find().populate("tasks").exec(function (err, lists) {
         if (err) {
             console.log(err);
@@ -48,7 +49,8 @@ router.get("/", function (req, res) {
                     }
                 });
             });
-            res.render("lists/index", { lists: lists });
+            // pass only the lists that the user owns:
+            res.render("lists/index", { lists: lists.filter(list => list.author.id !== undefined && list.author.id.equals(req.user._id)) });
         }
     });
 });
@@ -64,7 +66,11 @@ router.post("/", function (req, res) {
     var description = req.body.list.description;
     var createDate = new Date().toLocaleString();
     var lastUpdateDate = createDate;
-    var newList = { name: name, description: description, createDate: createDate, lastUpdateDate: lastUpdateDate };
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    }
+    var newList = { name: name, description: description, createDate: createDate, lastUpdateDate: lastUpdateDate, author: author };
     List.create(newList, function (err, createdList) {
         if (err) {
             console.log(err);

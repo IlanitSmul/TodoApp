@@ -2,7 +2,7 @@
 /* landing-header: landing-title + landing-button */
 /* ********************************************** */
 
-#landing-header {
+#landing-header { /* Extra small devices (portrait phones, less than 576px) */
     /* all of the elements inside the landing-header div will be in front of the background images */
     z-index: 1;
     /* we can use the z-index property; the default position value is static, which ignores z-index */
@@ -10,11 +10,16 @@
     /* center our text and button */
     text-align: center;
     /* vertically center our div, since it's contents take up quite a bit of space we use 40vh (view height) instead of 50, this way the content looks more visually centered */
-    padding-top: 25vh;
+    padding-top: 15vh;
+}
+@media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
+    #landing-header {
+        padding-top: 5vh;
+    } 
 }
 
 /* **************************************** */
-/* landing-title: welcome text */
+/* landing-title                            */
 /* **************************************** */
 
 #landing-title {
@@ -41,15 +46,26 @@
 }
 
 /* **************************************** */
-/* "view all lists" button */
+/* landing buttons */
 /* **************************************** */
 
-#landing-buttun {
+.landing-buttun:focus {
+    box-shadow: unset;
+}
+.landing-buttun {
     background-color: #ffd42d;
     font-family: 'Noto Sans JP', sans-serif;
 }
+.landing-buttun.choosen {
+    border: #2500ab 3px solid;
+    opacity: 1;
+}
+.landing-buttun.not-choosen {
+    border: unset;
+    opacity: 0.4;
+}
 
-#landing-buttun { /* Extra small devices (portrait phones, less than 576px) */
+.landing-buttun { /* Extra small devices (portrait phones, less than 576px) */
     font-size: xxx-large;
 }
 @media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
@@ -57,11 +73,56 @@
 @media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
 }
 @media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
-    #landing-buttun {
+    .landing-buttun {
         font-size: initial;
-    } 
+    }    
 }
 @media (min-width: 1200px) { /* Extra large devices (large desktops, 1200px and up) */
+}
+
+/* **************************************** */
+/* landing forms */
+/* **************************************** */
+
+#login-form, #register-form {
+    display: none;
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+.landing-form { 
+    width: 40%;
+    font-family: 'Noto Sans JP', sans-serif;
+    color: black;
+}
+.landing-form * { 
+    font-size: 2rem;
+}
+/* Large devices (desktops, 992px and up) */  
+@media (min-width: 992px) { 
+    .landing-form { 
+        width: 15%;
+    }
+    .landing-form * { 
+        font-size: initial;
+    }     
+}
+
+.landing-buttun-submit {
+    color: #d2c5b5;
+    background-color: #2500ab;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.landing-alert-flash {
+    color: #212529;
+    background-color: #d8ccbe8a;
+    border: 1px solid #2500ab;
+    border-radius: .25rem;
+}
+
+.landing-alert-flash span {
+    font-weight: bolder;
+    color: #2500ab;
 }
 
 /* **************************************** */

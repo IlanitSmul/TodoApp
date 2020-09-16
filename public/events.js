@@ -1,3 +1,71 @@
+// ============================
+// landing page
+// ============================
+
+// landing page: show/hide auth forms
+function toggleAuthForms() {
+    if (typeof event == 'undefined') { // then we redirect to form
+        if (authCommand == 'login') {
+            var formButton = document.getElementById('login-button');
+        } else if (authCommand == 'register') {
+            var formButton = document.getElementById('register-button');
+        } else {
+            console.log('error!');
+        }
+    } else { // then we click on the form button directly
+        var formButton = event.target; // the clicked button
+    }
+
+    var login = {
+        button: document.getElementById('login-button'),
+        form: document.getElementById("login-form"),
+        flash: document.getElementById("login-alert-flash"),
+    }
+    var register = {
+        button: document.getElementById('register-button'),
+        form: document.getElementById("register-form"),
+        flash: document.getElementById("register-alert-flash"),
+    }
+
+    // detrimine with form is choosen and which not choosen
+    if (formButton === login.button) { // login
+        var choosen = login;
+        var unChoosen = register;
+    } else { // register
+        var choosen = register;
+        var unChoosen = login;
+    }
+
+    // show choosen form + change style
+    choosen.button.classList.add("choosen");
+    choosen.button.classList.remove("not-choosen");
+    choosen.form.style.display = "block"; // show
+
+    // hide unChoosen form + change style
+    unChoosen.button.classList.add("not-choosen");
+    unChoosen.button.classList.remove("choosen");
+    unChoosen.form.style.display = "none"; // hide
+    if (unChoosen.flash) {
+        unChoosen.flash.style.display = "none"; // hide flash alert
+    }
+}
+
+// trigger login or register form when redirect from other pages via middleware.isLoggedIn
+if (typeof authCommand === 'undefined') {
+} else {
+    if (authCommand == 'login') {
+        $("#login-button").trigger("click");
+    } else if (authCommand == 'register') {
+        $("#register-button").trigger("click");
+    } else {
+        // don't trigger each of the forms
+    }
+}
+
+// ============================
+// lists/tasks pages
+// ============================
+
 // change list name by click it
 $('body').on('click', '[data-editable]', function (e) {
     e.preventDefault();

@@ -78,7 +78,7 @@ router.get("/:task_id", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("tasks/show", { list: list, task: task }); // todo: not need to pass all "list" object
+                res.render("tasks/show", { list: list, task: task });
             }
         });
     });
@@ -94,7 +94,7 @@ router.get("/:task_id/edit", function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                res.render("tasks/edit", { list: list, task: task }); // todo: not need to pass all "list" object
+                res.render("tasks/edit", { list: list, task: task });
             }
         });
     })
