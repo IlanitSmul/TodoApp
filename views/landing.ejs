@@ -42,105 +42,112 @@
 
     </script>
 
-    <div id="landing-header">
+    <!-- background              -->
+    <div class="background">
 
-        <!-- ----------------------- -->
-        <!-- welocome messege        -->
-        <!-- ----------------------- -->
-        <div id="landing-title">
+        <div id="landing-header">
+
+            <!-- ----------------------- -->
+            <!-- welocome messege        -->
+            <!-- ----------------------- -->
+            <div id="landing-title">
+                <% if(!currentUser){ %>
+                <br>
+                <% } else { %>
+                <span> <%= currentUser.username %></span>, <br> <!-- show username if connected -->
+                <% } %>
+                Welcome to <br> <span>TodoApp</span>!
+            </div>
+
+
+            <!-- ----------------------- -->
+            <!-- buttons -->
+            <!-- ----------------------- -->
+
+            <!-- if a user is connected -->
             <% if(!currentUser){ %>
-            <br>
+            <div>
+                <!-- Login -->
+                <button class="btn btn-lg mt-2 mx-2 landing-buttun" id="login-button" onclick="toggleAuthForms()">
+                    <i class="fas fa-sign-in-alt pr-1"></i> Login
+                </button>
+                <!-- Register -->
+                <button class="btn btn-lg mt-2 mx-2 landing-buttun" id="register-button" onclick="toggleAuthForms()">
+                    <i class="fas fa-user-plus pr-1"></i> Register
+                </button>
+            </div>
+
+            <!-- if no user is connected -->
             <% } else { %>
-            <span> <%= currentUser.username %></span>, <br> <!-- show username if connected -->
-            <% } %>
-            Welcome to <br> <span>TodoApp</span>!
-        </div>
-
-
-        <!-- ----------------------- -->
-        <!-- buttons -->
-        <!-- ----------------------- -->
-
-        <!-- if a user is connected -->
-        <% if(!currentUser){ %>
-        <div>
-            <!-- Login -->
-            <button class="btn btn-lg mt-2 mx-2 landing-buttun" id="login-button" onclick="toggleAuthForms()">
-                <i class="fas fa-sign-in-alt pr-1"></i> Login
-            </button>
-            <!-- Register -->
-            <button class="btn btn-lg mt-2 mx-2 landing-buttun" id="register-button" onclick="toggleAuthForms()">
-                <i class="fas fa-user-plus pr-1"></i> Register
-            </button>
-        </div>
-
-        <!-- if no user is connected -->
-        <% } else { %>
-        <div>
-            <!-- View Your Lists -->
-            <a class="btn btn-lg mt-2 mx-2 landing-buttun" href="/lists">
-                <i class="fas fa-list pr-1"></i> View Your Lists
-            </a>
-            <!-- Logout -->
-            <a class="btn btn-lg mt-2 mx-2 landing-buttun" href="/logout">
-                <i class="fas fa-sign-out-alt pr-1"></i> Logout
-            </a>
-        </div>
-        <% } %>
-
-
-        <!-- ----------------------- -->
-        <!-- login/register forms    -->
-        <!-- ----------------------- -->
-
-        <!-- login form -->
-        <div id="login-form" class="landing-form mx-auto mt-3">
-            <form action="/login" method="post">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="username">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="password">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-md landing-buttun-submit">Sign In</button>
-                </div>
-            </form>
-            <% if(error && error.length > 0 && errorType=='login') { %>
-            <div class="landing-alert-flash p-1" id="login-alert-flash">
-                <p class="m-0"><span>ERROR: </span><%= error %></p>
+            <div>
+                <!-- View Your Lists -->
+                <a class="btn btn-lg mt-2 mx-2 landing-buttun" href="/lists">
+                    <i class="fas fa-list pr-1"></i> View Your Lists
+                </a>
+                <!-- Logout -->
+                <a class="btn btn-lg mt-2 mx-2 landing-buttun" href="/logout">
+                    <i class="fas fa-sign-out-alt pr-1"></i> Logout
+                </a>
             </div>
             <% } %>
-        </div>
 
-        <!-- register form -->
-        <div id="register-form" class="landing-form mx-auto mt-3">
-            <form action="/register" method="post">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="username" placeholder="username">
+
+            <!-- ----------------------- -->
+            <!-- login/register forms    -->
+            <!-- ----------------------- -->
+
+            <!-- login form -->
+            <div id="login-form" class="landing-form mx-auto mt-3">
+                <form action="/login" method="post">
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="text" name="username" placeholder="username">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="password" name="password" placeholder="password">
+                    </div>
+                    <div class="form-group mb-2">
+                        <button class="btn btn-md landing-buttun-submit">Sign In</button>
+                    </div>
+                </form>
+                <% if(error && error.length > 0 && errorType=='login') { %>
+                <div class="landing-alert-flash p-1" id="login-alert-flash">
+                    <p class="m-0"><span>ERROR: </span><%= error %></p>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="password">
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-md landing-buttun-submit">Sign Up</button>
-                </div>
-            </form>
-            <% if(error && error.length > 0 && errorType=='register') { %>
-            <div class="landing-alert-flash p-1" id="register-alert-flash">
-                <p class="m-0"><span>ERROR: </span><%= error %></p>
+                <% } %>
             </div>
-            <% } %>
+
+            <!-- register form -->
+            <div id="register-form" class="landing-form mx-auto mt-3">
+                <form action="/register" method="post">
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="text" name="username" placeholder="username">
+                    </div>
+                    <div class="form-group mb-2">
+                        <input class="form-control" type="password" name="password" placeholder="password">
+                    </div>
+                    <div class="form-group mb-2">
+                        <button class="btn btn-md landing-buttun-submit">Sign Up</button>
+                    </div>
+                </form>
+                <% if(error && error.length > 0 && errorType=='register') { %>
+                <div class="landing-alert-flash p-1" id="register-alert-flash">
+                    <p class="m-0"><span>ERROR: </span><%= error %></p>
+                </div>
+                <% } %>
+            </div>
+
+            <!-- ----------------------- -->
+            <!-- links                   -->
+            <!-- ----------------------- -->
+            <div class="landing-link">
+                <a href="https://github.com/IlanitSmul/TodoApp"><i class="fab fa-github mx-1"></i></a>
+                <a href="https://www.linkedin.com/in/ilanit-smul/"><i class="fab fa-linkedin mx-1"></i></a>
+                <p>Created By Ilanit Smul</p>
+            </div>
+
         </div>
 
     </div>
-
-
-    <!-- ----------------------- -->
-    <!-- background              -->
-    <!-- ----------------------- -->
-
-    <div class="background"></div>
 
     <script src="/events.js"></script>
 
