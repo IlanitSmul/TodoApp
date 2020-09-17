@@ -167,8 +167,9 @@ body, html {
 /* **************************************** */
 
 .landing-link { 
+    text-align: center;
     /* stick links to bottom of page (footer): */
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
 }
@@ -191,5 +192,8 @@ body, html {
     }
     .landing-link p {
         font-size: 0.7rem;
+        margin-bottom: 0.5rem;
     } 
 }
+
+ 
