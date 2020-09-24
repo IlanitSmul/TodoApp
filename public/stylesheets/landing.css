@@ -69,16 +69,10 @@
 .landing-buttun { /* Extra small devices (portrait phones, less than 576px) */
     font-size: xxx-large;
 }
-@media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
-}
-@media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
-}
 @media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
     .landing-buttun {
         font-size: initial;
     }    
-}
-@media (min-width: 1200px) { /* Extra large devices (large desktops, 1200px and up) */
 }
 
 /* **************************************** */
@@ -98,6 +92,9 @@
 .landing-form * { 
     font-size: 2rem;
 }
+.landing-buttun-submit {
+    font-size: xxx-large;
+} 
 /* Large devices (desktops, 992px and up) */  
 @media (min-width: 992px) { 
     .landing-form { 
@@ -105,13 +102,19 @@
     }
     .landing-form * { 
         font-size: initial;
-    }     
+    }  
+    .landing-buttun-submit {
+        font-size: initial;
+    }   
 }
 
 .landing-buttun-submit {
     color: #d2c5b5;
     background-color: #2500ab;
     font-family: 'Noto Sans JP', sans-serif;
+}
+.landing-buttun-submit:hover {
+    color: #ffd42d;
 }
 
 .landing-alert-flash {
@@ -131,7 +134,7 @@
 }
 
 /* **************************************** */
-/* background image */
+/* background image                         */ /* todo: fix background */
 /* **************************************** */
 
 /* .background {
@@ -160,6 +163,7 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed
 }
 
 /* **************************************** */
@@ -196,4 +200,19 @@ body, html {
     } 
 }
 
- 
+/* **************************************** */
+/* **************************************** */
+/* draft                                    */
+/* **************************************** */
+/* **************************************** */
+
+/* Extra small devices (portrait phones, less than 576px) */
+
+@media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
+}
+@media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
+}
+@media (min-width: 992px) { /* Large devices (desktops, 992px and up) */ 
+}
+@media (min-width: 1200px) { /* Extra large devices (large desktops, 1200px and up) */
+}

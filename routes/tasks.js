@@ -24,7 +24,6 @@ router.patch("/:task_id/change_status", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(updatedTask); // dlog
             res.sendStatus(200);
         }
     });
@@ -57,7 +56,6 @@ router.post("/", function (req, res) {
                 if (err) {
                     console.log(err);
                 } else {
-                    console.log(task); // dlog
                     task.save();
                     list.tasks.push(task);
                     list.save();
@@ -106,7 +104,6 @@ router.put("/:task_id", function (req, res) {
         if (err) {
             console.log(err);
         } else {
-            console.log(updatedTask); // dlog
             res.redirect("/lists/" + req.params.list_id + "/tasks/" + req.params.task_id);
         }
     });
@@ -129,5 +126,3 @@ router.delete("/:task_id", function (req, res) {
 });
 
 module.exports = router;
-
-// todo: for every "console.log(err)" add redirect action and flash message

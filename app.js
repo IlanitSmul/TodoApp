@@ -41,6 +41,7 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user; // the user that connent to the system currently
+    res.locals.demo = req.flash('demo'); // true - the current user is guest, false - the current user is registered to the app
     res.locals.success = req.flash('success'); // "success" flash alerts
     res.locals.error = req.flash('error'); // "error" flash alerts
     res.locals.errorType = req.flash('error-type'); // type of a error flash alert: login / register / general

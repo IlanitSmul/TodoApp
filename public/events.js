@@ -10,7 +10,7 @@ function toggleAuthForms() {
         } else if (authCommand == 'register') {
             var formButton = document.getElementById('register-button');
         } else {
-            console.log('error!');
+            // console.log('error!');
         }
     } else { // then we click on the form button directly
         var formButton = event.target; // the clicked button
@@ -89,10 +89,10 @@ $('body').on('click', '[data-editable]', function (e) {
             data: data,
             dataType: 'text',
             success: function () {
-                console.log('success');
+                // console.log('success');
             },
             error: function () {
-                console.log('error');
+                // console.log('error');
             }
         });
 
@@ -126,7 +126,7 @@ $('.dropdown-menu button').on('click', function (e) {
         data: data,
         dataType: 'text',
         success: function (msg) {
-            console.log('success');
+            // console.log('success');
             if (selectedStatus != currentStatus) {
                 // change count in status col title
                 var numberElements = [".status-" + selectedStatus + "-number", ".status-" + currentStatus + "-number"]
@@ -143,7 +143,7 @@ $('.dropdown-menu button').on('click', function (e) {
             }
         },
         error: function () {
-            console.log('error');
+            // console.log('error');
         }
     });
 });
