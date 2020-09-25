@@ -2,13 +2,14 @@ var express = require("express");
 var router = express.Router({ mergeParams: true });
 var List = require("../models/list");
 var Task = require("../models/task");
+var middleware = require("../middleware");
 
 // ============================
 // TASK ROUTES
 // ============================
 
 // add task | POST - Create a new task, then render "tasks/new" with the "default_status"
-router.post("/new_task", function (req, res) {
+router.post("/new_task", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id, function (err, list) {
         if (err) {
             console.log(err);
@@ -19,7 +20,7 @@ router.post("/new_task", function (req, res) {
 });
 
 // edit status | PATCH - Change status of task
-router.patch("/:task_id/change_status", function (req, res) {
+router.patch("/:task_id/change_status", middleware.checkUserList, function (req, res) {
     Task.findByIdAndUpdate(req.params.task_id, { 'status': req.body.status }, { new: true }, function (err, updatedTask) {
         if (err) {
             console.log(err);
@@ -36,7 +37,7 @@ router.patch("/:task_id/change_status", function (req, res) {
 // Index|GET - List all task lists ("/lists") --> NOT RELEVANT
 
 // New|GET - Show new task form ("/lists/:list_id/tasks/new")
-router.get("/new", function (req, res) {
+router.get("/new", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id, function (err, list) {
         if (err) {
             console.log(err);
@@ -47,7 +48,7 @@ router.get("/new", function (req, res) {
 });
 
 // Create|POST - Create a new task, then redirect "/lists/:list_id/tasks/task_id"
-router.post("/", function (req, res) {
+router.post("/", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id, function (err, list) {
         if (err) {
             console.log(err);
@@ -67,7 +68,7 @@ router.post("/", function (req, res) {
 });
 
 // Show|GET - Show info about one specific task ("/lists/:list_id/tasks/:task_id")
-router.get("/:task_id", function (req, res) {
+router.get("/:task_id", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id).populate("tasks").exec(function (err, list) {
         if (err || !list) {
             console.log(err);
@@ -83,7 +84,7 @@ router.get("/:task_id", function (req, res) {
 });
 
 // Edit|GET - Show edit form for specific task ("/lists/:list_id/tasks/:task_id/edit")
-router.get("/:task_id/edit", function (req, res) {
+router.get("/:task_id/edit", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id, function (err, list) {
         if (err || !list) {
             console.log(err);
@@ -99,7 +100,7 @@ router.get("/:task_id/edit", function (req, res) {
 });
 
 // Update|PUT - Update particular task, then redirect "/lists/:list_id/tasks/:task_id"
-router.put("/:task_id", function (req, res) {
+router.put("/:task_id", middleware.checkUserList, function (req, res) {
     Task.findByIdAndUpdate(req.params.task_id, req.body.task, { new: true }, function (err, updatedTask) {
         if (err) {
             console.log(err);
@@ -110,7 +111,7 @@ router.put("/:task_id", function (req, res) {
 });
 
 // Destroy|DELETE - Delete particular task, then redirect "/lists/:list_id" 
-router.delete("/:task_id", function (req, res) {
+router.delete("/:task_id", middleware.checkUserList, function (req, res) {
     Task.findByIdAndRemove(req.params.task_id, function (err) {
         if (err) {
             console.log(err);

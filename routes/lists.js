@@ -11,7 +11,7 @@ var mongoose = require('mongoose');
 // ============================
 
 // edit name | PATCH - Change name of list
-router.patch("/:list_id/update_name", function (req, res) {
+router.patch("/:list_id/update_name", middleware.checkUserList, function (req, res) {
     List.findByIdAndUpdate(req.params.list_id, { 'name': req.body.list_name }, { new: true }, function (err, updatedList) {
         if (err) {
             console.log(err);
@@ -241,12 +241,12 @@ router.get("/", middleware.isLoggedIn, function (req, res) {
 });
 
 // New|GET - Show new list form ("/lists/new")
-router.get("/new", function (req, res) {
+router.get("/new", middleware.isLoggedIn, function (req, res) {
     res.render("lists/new");
 });
 
 // Create|POST - Create a new list, then redirect "/lists/:list_id"
-router.post("/", function (req, res) {
+router.post("/", middleware.isLoggedIn, function (req, res) {
     var name = req.body.list.name;
     var description = req.body.list.description;
     var createDate = new Date().toLocaleString();
@@ -266,7 +266,7 @@ router.post("/", function (req, res) {
 });
 
 // Show|GET - Show info about one specific list ("/lists/:list_id")
-router.get("/:list_id", function (req, res) {
+router.get("/:list_id", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id).populate("tasks").exec(function (err, foundList) {
         if (err || !foundList) {
             console.log(err);
@@ -277,7 +277,7 @@ router.get("/:list_id", function (req, res) {
 });
 
 // Edit|GET - Show edit form for specific list ("/lists/:list_id/edit") 
-router.get("/:list_id/edit", function (req, res) {
+router.get("/:list_id/edit", middleware.checkUserList, function (req, res) {
     List.findById(req.params.list_id, function (err, foundList) {
         if (err || !foundList) {
             console.log(err);
@@ -288,7 +288,7 @@ router.get("/:list_id/edit", function (req, res) {
 });
 
 // Update|PUT - Update particular list, then redirect "/lists/:list_id"
-router.put("/:list_id", function (req, res) {
+router.put("/:list_id", middleware.checkUserList, function (req, res) {
     req.body.list.lastUpdateDate = new Date().toLocaleString();
     List.findByIdAndUpdate(req.params.list_id, req.body.list, function (err, updatedList) {
         if (err) {
@@ -300,7 +300,7 @@ router.put("/:list_id", function (req, res) {
 });
 
 // Destroy|DELETE - Delete particular list, then redirect "/lists" 
-router.delete("/:list_id", function (req, res) {
+router.delete("/:list_id", middleware.checkUserList, function (req, res) {
     List.findByIdAndRemove(req.params.list_id, function (err, foundList) {
         if (err) {
             console.log(err);

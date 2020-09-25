@@ -107,13 +107,20 @@
                 <a class="btn btn-lg mt-2 mx-2 landing-buttun" href="/logout">
                     <i class="fas fa-sign-out-alt pr-1"></i> Logout
                 </a>
+                <!-- errors -->
+                <% if(error && error.length > 0 && errorType=='general') { %>
+                <div class="landing-form mx-auto mt-3">
+                    <div class="landing-alert-flash p-1" id="general-alert-flash">
+                        <p class="m-0"><span>ERROR: </span><%= error %></p>
+                    </div>
+                </div>
+                <% } %>
             </div>
             <% } %>
 
 
             <!-- ----------------------- -->
             <!-- login/register forms    -->
-            <!-- // todo: fix layout! -->
             <!-- ----------------------- -->
 
             <!-- login form -->
@@ -159,7 +166,7 @@
         </div>
 
         <!-- ----------------------- -->
-        <!-- links // todo: fix!     -->
+        <!-- links                   -->
         <!-- ----------------------- -->
         <div class="landing-link">
             <a href="https://github.com/IlanitSmul/TodoApp"><i class="fab fa-github mx-1"></i></a>

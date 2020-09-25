@@ -4,12 +4,13 @@ var passport = require("passport");
 var Task = require("../models/task");
 var User = require("../models/user");
 const { version } = require("mongoose");
+var middleware = require("../middleware");
 
 // ============================
 // AUTH ROUTE
 // ============================
 
-// guest|POST - Handle register guest, then redirect pre-made "/lists" // todo: add flash messages in case of error
+// guest|POST - Handle register guest, then redirect pre-made "/lists"
 router.post("/guest", function (req, res) {
     User.countDocuments({}, function (err, numOfUsers) {
         if (err) {
@@ -82,7 +83,7 @@ router.post("/login", function (req, res, next) {
 })
 
 // logout|GET - Show logout form ("/logout")
-router.get("/logout", function (req, res) {
+router.get("/logout", middleware.isLoggedIn, function (req, res) {
     req.logout();
     res.redirect("/");
 });
