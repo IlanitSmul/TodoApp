@@ -14,6 +14,9 @@
 .jumbotron-title span {
     font-weight: bold;
 }
+.display-4 {
+    font-size: 3rem;
+}
 
 .jumbotron-add-list-btn {
     background-color: #ffd42d;
